@@ -15,3 +15,7 @@ repos:
   hooks:
   - id: gdlint
   - id: gdformat
+exclude: |
+  (?x)^(
+    addons/(.*)
+  )$
