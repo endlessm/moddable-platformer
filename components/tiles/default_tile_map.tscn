@@ -1,11 +1,11 @@
 [gd_scene load_steps=6 format=3 uid="uid://danlrmsfmsros"]
 
-[ext_resource type="Texture2D" uid="uid://3b2ad3vvce4w" path="res://assets/world_tiles_1.pxo" id="1_vrohg"]
-[ext_resource type="Texture2D" uid="uid://bnm6vymi1mqfn" path="res://assets/extra_tiles.pxo" id="2_xdjjl"]
+[ext_resource type="Texture2D" uid="uid://xpbsou0p3fw2" path="res://assets/world_tiles_1.png" id="1_5db7n"]
+[ext_resource type="Texture2D" uid="uid://dra1gids3ubjk" path="res://assets/extra_tiles.png" id="2_fghby"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b5qd5"]
 resource_name = "World Tiles 1"
-texture = ExtResource("1_vrohg")
+texture = ExtResource("1_5db7n")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -80,7 +80,7 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bgy7y"]
 resource_name = "Extra Tiles"
-texture = ExtResource("2_xdjjl")
+texture = ExtResource("2_fghby")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
