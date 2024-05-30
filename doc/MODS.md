@@ -4,6 +4,9 @@
 
 ## Core Mechanics
 
+Select the GameLogic node. From the Inspector, you can adjust the
+Gravity of the world.
+
 ## Rules
 
 ## Space

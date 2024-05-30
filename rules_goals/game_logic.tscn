@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cswheshouik14"]
+
+[ext_resource type="Script" path="res://scripts/rules_goals/game_logic.gd" id="1_5v83t"]
+
+[node name="GameLogic" type="Node"]
+script = ExtResource("1_5v83t")

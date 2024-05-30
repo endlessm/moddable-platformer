@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhcpt1kt8cs0g"]
+[gd_scene load_steps=6 format=3 uid="uid://dhcpt1kt8cs0g"]
 
 [ext_resource type="PackedScene" uid="uid://8st4scqt06l8" path="res://components/player/player.tscn" id="2_7yl00"]
+[ext_resource type="PackedScene" uid="uid://cswheshouik14" path="res://rules_goals/game_logic.tscn" id="3_xbkvd"]
 [ext_resource type="PackedScene" uid="uid://danlrmsfmsros" path="res://components/tiles/default_tile_map.tscn" id="3_yfnmv"]
 
 [sub_resource type="Gradient" id="Gradient_80myt"]
@@ -34,3 +35,5 @@ motion_scale = Vector2(0, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture = SubResource("GradientTexture2D_ljotv")
+
+[node name="GameLogic" parent="." instance=ExtResource("3_xbkvd")]
