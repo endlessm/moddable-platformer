@@ -27,6 +27,10 @@ window/size/window_width_override=960
 window/size/window_height_override=540
 window/stretch/mode="canvas_items"
 
+[layer_names]
+
+2d_physics/layer_3="Rigid Platforms"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
