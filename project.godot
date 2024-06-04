@@ -29,6 +29,7 @@ window/stretch/mode="canvas_items"
 
 [layer_names]
 
+2d_physics/layer_2="Coins"
 2d_physics/layer_3="Rigid Platforms"
 
 [rendering]
