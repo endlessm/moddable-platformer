@@ -24,3 +24,12 @@ theme_override_font_sizes/font_size = 64
 text = "Press any key
 to Start"
 horizontal_alignment = 1
+
+[node name="CollectedCoins" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 64.0
+offset_top = 40.0
+offset_right = 306.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 64
+text = "Coins: 0"
