@@ -19,12 +19,12 @@ const SPRITE: Texture2D = preload("res://assets/world_tiles_1.png")
 @export var fall_time: float = -1
 
 var fall_timer: Timer
-var _shaking := false
 
 @onready var _rigid_body := %RigidBody2D
 @onready var _sprites := %Sprites
 @onready var _collision_shape := %CollisionShape2D
 @onready var _area_collision_shape := %AreaCollisionShape2D
+@onready var _animation_player := %AnimationPlayer
 
 
 func _set_type(new_type):
@@ -87,11 +87,6 @@ func _ready():
 	add_child(fall_timer)
 
 
-func _physics_process(_delta):
-	if _shaking:
-		_sprites.position = 2 * Vector2(randf(), randf())
-
-
 func _on_area_2d_body_entered(body):
 	# TODO: Add Player class_name to player.gd
 	if body.name == "Player":
@@ -99,11 +94,11 @@ func _on_area_2d_body_entered(body):
 		if abs(body.position.y - position.y + 64) < 5:
 			if fall_time > 0:
 				fall_timer.start(fall_time)
-				_shaking = true
+				_animation_player.play("shake")
 			if fall_time == 0:
 				_rigid_body.call_deferred("set_freeze_enabled", false)
 
 
 func _fall():
 	_rigid_body.freeze = false
-	_shaking = false
+	_animation_player.stop()
