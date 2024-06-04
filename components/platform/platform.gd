@@ -7,15 +7,19 @@ enum PlatformType { FULL, SKINNY }
 const TILE_WIDTH: int = 64
 const SPRITE: Texture2D = preload("res://assets/world_tiles_1.png")
 
+## How thick is the platform?
 @export var type: PlatformType = PlatformType.FULL:
 	set = _set_type
 
+## How many tiles wide is the platform?
 @export_range(1, 20, 1) var width: int = 3:
 	set = _set_width
 
+## Can you jump through the bottom of the platform?
 @export var one_way: bool = false
 
-## Number of seconds after touching platform to fall. Negative values won't fall
+## Number of seconds after touching the platform for it to fall.
+## Negative values won't fall.
 @export var fall_time: float = -1
 
 var fall_timer: Timer
