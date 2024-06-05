@@ -11,6 +11,7 @@
 [node name="Main" type="Node2D"]
 
 [node name="GameLogic" parent="." instance=ExtResource("3_xbkvd")]
+win_by_collecting_coins = true
 
 [node name="Background" parent="." instance=ExtResource("2_tb5a2")]
 
