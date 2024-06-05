@@ -1,33 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhcpt1kt8cs0g"]
+[gd_scene load_steps=8 format=3 uid="uid://dhcpt1kt8cs0g"]
 
 [ext_resource type="PackedScene" uid="uid://8st4scqt06l8" path="res://components/player/player.tscn" id="2_7yl00"]
+[ext_resource type="PackedScene" uid="uid://jnrusvm3gric" path="res://spaces/background.tscn" id="2_tb5a2"]
 [ext_resource type="PackedScene" uid="uid://cswheshouik14" path="res://rules_goals/game_logic.tscn" id="3_xbkvd"]
-[ext_resource type="PackedScene" uid="uid://danlrmsfmsros" path="res://components/tiles/default_tile_map.tscn" id="3_yfnmv"]
+[ext_resource type="PackedScene" uid="uid://danlrmsfmsros" path="res://spaces/tilemap.tscn" id="3_yfnmv"]
 [ext_resource type="PackedScene" uid="uid://coq6d3u6wnvs2" path="res://components/platform/platform.tscn" id="4_gd51l"]
 [ext_resource type="PackedScene" uid="uid://daf24t18h3n5e" path="res://components/coin/coin.tscn" id="5_u7hr5"]
 [ext_resource type="PackedScene" uid="uid://jt80gv02u4f2" path="res://hud.tscn" id="6_mp7wy"]
-
-[sub_resource type="Gradient" id="Gradient_80myt"]
-colors = PackedColorArray(5.47232e-05, 0.00409156, 0.0787912, 1, 0.104679, 0.159134, 0.271181, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ljotv"]
-gradient = SubResource("Gradient_80myt")
-width = 1024
-height = 1024
-fill_to = Vector2(0, 1)
 
 [node name="Main" type="Node2D"]
 
 [node name="GameLogic" parent="." instance=ExtResource("3_xbkvd")]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-follow_viewport_enabled = true
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-texture = SubResource("GradientTexture2D_ljotv")
+[node name="Background" parent="." instance=ExtResource("2_tb5a2")]
 
 [node name="TileMap" parent="." instance=ExtResource("3_yfnmv")]
 layer_0/tile_data = PackedInt32Array(-65535, 196608, 0, -262140, 0, 0, -65529, 65536, 0)
