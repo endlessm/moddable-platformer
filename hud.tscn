@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://jt80gv02u4f2"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_8msyy"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_8msyy")
+
+[node name="Start" type="Label" parent="."]
+unique_name_in_owner = true
+top_level = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -194.5
+offset_top = -396.0
+offset_right = 194.5
+offset_bottom = -217.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+text = "Press any key
+to Start"
+horizontal_alignment = 1
+
+[node name="CollectedCoins" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 64.0
+offset_top = 40.0
+offset_right = 306.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 64
+text = "Coins: 0"

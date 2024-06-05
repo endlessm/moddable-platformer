@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhcpt1kt8cs0g"]
+[gd_scene load_steps=9 format=3 uid="uid://dhcpt1kt8cs0g"]
 
 [ext_resource type="PackedScene" uid="uid://8st4scqt06l8" path="res://components/player/player.tscn" id="2_7yl00"]
 [ext_resource type="PackedScene" uid="uid://cswheshouik14" path="res://rules_goals/game_logic.tscn" id="3_xbkvd"]
 [ext_resource type="PackedScene" uid="uid://danlrmsfmsros" path="res://components/tiles/default_tile_map.tscn" id="3_yfnmv"]
 [ext_resource type="PackedScene" uid="uid://coq6d3u6wnvs2" path="res://components/platform/platform.tscn" id="4_gd51l"]
 [ext_resource type="PackedScene" uid="uid://daf24t18h3n5e" path="res://components/coin/coin.tscn" id="5_u7hr5"]
+[ext_resource type="PackedScene" uid="uid://jt80gv02u4f2" path="res://hud.tscn" id="6_mp7wy"]
 
 [sub_resource type="Gradient" id="Gradient_80myt"]
 colors = PackedColorArray(5.47232e-05, 0.00409156, 0.0787912, 1, 0.104679, 0.159134, 0.271181, 1)
@@ -61,3 +62,5 @@ width = 6
 
 [node name="Coin" parent="." instance=ExtResource("5_u7hr5")]
 position = Vector2(283, -237)
+
+[node name="HUD" parent="." instance=ExtResource("6_mp7wy")]
