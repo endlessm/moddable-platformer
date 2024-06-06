@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://jnrusvm3gric"]
+
+[sub_resource type="Gradient" id="Gradient_80myt"]
+colors = PackedColorArray(5.47232e-05, 0.00409156, 0.0787912, 1, 0.104679, 0.159134, 0.271181, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ljotv"]
+gradient = SubResource("Gradient_80myt")
+width = 1024
+height = 1024
+fill_to = Vector2(0, 1)
+
+[node name="Background" type="ParallaxBackground"]
+follow_viewport_enabled = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+texture = SubResource("GradientTexture2D_ljotv")
