@@ -52,6 +52,8 @@ width = 6
 
 [node name="Player" parent="." instance=ExtResource("2_7yl00")]
 position = Vector2(16, -32)
+collision_layer = 1
+collision_mask = 7
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-16, 32)
