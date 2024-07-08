@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://dk0xon0k7ga23"]
+
+[ext_resource type="Texture2D" uid="uid://dwhi5vmkbnyk4" path="res://assets/enemy.png" id="1_57cf6"]
+[ext_resource type="Script" path="res://components/enemy/enemy.gd" id="1_urf0o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgk0p"]
+atlas = ExtResource("1_57cf6")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f08vp"]
+atlas = ExtResource("1_57cf6")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2xpc5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgk0p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f08vp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kii40"]
+size = Vector2(24, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cepcq"]
+size = Vector2(24, 51)
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_urf0o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_2xpc5")
+frame_progress = 0.426537
+
+[node name="LeftRay" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-12, 0)
+collision_mask = 5
+
+[node name="RightRay" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(12, 0)
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_kii40")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_cepcq")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
