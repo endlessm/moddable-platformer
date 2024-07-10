@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://components/platform/platform.gd" id="1_dpc6h"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7w47"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1qhm"]
 size = Vector2(192, 64)
 
 [sub_resource type="Animation" id="Animation_6232f"]
@@ -41,14 +41,14 @@ unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 unique_name_in_owner = true
-shape = SubResource("RectangleShape2D_k7w47")
+shape = SubResource("RectangleShape2D_x1qhm")
 
 [node name="Area2D" type="Area2D" parent="RigidBody2D"]
 
 [node name="AreaCollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D"]
 unique_name_in_owner = true
 position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_k7w47")
+shape = SubResource("RectangleShape2D_x1qhm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RigidBody2D"]
 unique_name_in_owner = true

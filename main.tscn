@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhcpt1kt8cs0g"]
+[gd_scene load_steps=10 format=3 uid="uid://dhcpt1kt8cs0g"]
 
 [ext_resource type="PackedScene" uid="uid://8st4scqt06l8" path="res://components/player/player.tscn" id="2_7yl00"]
 [ext_resource type="PackedScene" uid="uid://jnrusvm3gric" path="res://spaces/background.tscn" id="2_tb5a2"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://coq6d3u6wnvs2" path="res://components/platform/platform.tscn" id="4_gd51l"]
 [ext_resource type="PackedScene" uid="uid://daf24t18h3n5e" path="res://components/coin/coin.tscn" id="5_u7hr5"]
 [ext_resource type="PackedScene" uid="uid://jt80gv02u4f2" path="res://hud.tscn" id="6_mp7wy"]
+[ext_resource type="PackedScene" uid="uid://dk0xon0k7ga23" path="res://components/enemy/enemy.tscn" id="9_l6smt"]
 
 [node name="Main" type="Node2D"]
 
@@ -52,6 +53,8 @@ width = 6
 
 [node name="Player" parent="." instance=ExtResource("2_7yl00")]
 position = Vector2(16, -32)
+collision_layer = 1
+collision_mask = 7
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-16, 32)
@@ -59,3 +62,12 @@ zoom = Vector2(2, 2)
 limit_bottom = 270
 
 [node name="HUD" parent="." instance=ExtResource("6_mp7wy")]
+
+[node name="Enemy" parent="." instance=ExtResource("9_l6smt")]
+position = Vector2(-408, -67)
+speed = 100.0
+
+[node name="Enemy2" parent="." instance=ExtResource("9_l6smt")]
+position = Vector2(-85, -74)
+speed = 50.0
+start_direction = 1

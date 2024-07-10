@@ -9,11 +9,14 @@ extends CharacterBody2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var original_position: Vector2
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Global.gravity_changed.connect(_on_gravity_changed)
+
+	original_position = position
 
 
 func _on_gravity_changed(new_gravity):
@@ -38,3 +41,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 
 	move_and_slide()
+
+
+func reset():
+	position = original_position

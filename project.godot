@@ -29,8 +29,10 @@ window/stretch/mode="canvas_items"
 
 [layer_names]
 
+2d_physics/layer_1="Player"
 2d_physics/layer_2="Coins"
-2d_physics/layer_3="Rigid Platforms"
+2d_physics/layer_3="Platforms"
+2d_physics/layer_4="Enemy"
 
 [rendering]
 
