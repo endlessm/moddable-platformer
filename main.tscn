@@ -61,6 +61,7 @@ collision_mask = 7
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, 15)
+position_smoothing_enabled = true
 
 [node name="HUD" parent="." instance=ExtResource("6_mp7wy")]
 
