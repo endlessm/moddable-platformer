@@ -70,7 +70,6 @@ func _recreate_sprites():
 		new_sprite.texture = SPRITE
 		new_sprite.hframes = 10
 		new_sprite.vframes = 4
-		new_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 
 		match type:
 			PlatformType.FULL:
