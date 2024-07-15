@@ -58,7 +58,6 @@ collision_mask = 7
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-16, 32)
-zoom = Vector2(2, 2)
 limit_bottom = 270
 
 [node name="HUD" parent="." instance=ExtResource("6_mp7wy")]
