@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnbill0vgdnmk"
-path="res://.godot/imported/coin_tiles.png-39bc17c22b107cad293ddce2748ff959.ctex"
+uid="uid://bxllxt7regtke"
+path="res://.godot/imported/jewel.png-8f7803db0fe8004759e58db3d3bbe9fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/coin_tiles.png"
-dest_files=["res://.godot/imported/coin_tiles.png-39bc17c22b107cad293ddce2748ff959.ctex"]
+source_file="res://assets/items/jewel.png"
+dest_files=["res://.godot/imported/jewel.png-8f7803db0fe8004759e58db3d3bbe9fa.ctex"]
 
 [params]
 
