@@ -58,10 +58,9 @@ func _on_gravity_changed(new_gravity):
 
 func _on_hitbox_body_entered(body):
 	if body.name == "Player":
-		if body.velocity.y <= 0 or position.y - body.position.y < 34:
+		if squashable and body.velocity.y > 0 and body.position.y < position.y:
+			body.velocity.y = body.jump_velocity
+			queue_free()
+		else:
 			if reset_player:
 				body.reset()
-		else:
-			if squashable:
-				body.velocity.y = body.jump_velocity * 0.8
-				queue_free()
