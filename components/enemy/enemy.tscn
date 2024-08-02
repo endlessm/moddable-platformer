@@ -39,6 +39,8 @@ size = Vector2(82, 176)
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 4
+floor_constant_speed = true
+floor_snap_length = 32.0
 script = ExtResource("1_urf0o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
