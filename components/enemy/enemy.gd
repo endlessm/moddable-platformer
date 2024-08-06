@@ -2,7 +2,8 @@ class_name Enemy
 extends CharacterBody2D
 
 ## How fast does your enemy move?
-@export_range(0, 1000, 10) var speed: float = 100.0
+@export_range(0, 1000, 10) var speed: float = 100.0:
+	set = _set_speed
 
 ## Does the enemy fall off edges?
 @export var fall_off_edge: bool = false
@@ -26,11 +27,20 @@ var direction: int
 @onready var _right_ray := %RightRay
 
 
+func _set_speed(new_speed):
+	speed = new_speed
+	if not is_node_ready():
+		await ready
+	if speed == 0:
+		_sprite.speed_scale = 0
+	else:
+		_sprite.speed_scale = speed / 100
+
+
 func _ready():
 	Global.gravity_changed.connect(_on_gravity_changed)
 
 	direction = -1 if start_direction == 0 else 1
-	_sprite.play("default")
 
 
 func _physics_process(delta):
@@ -45,6 +55,8 @@ func _physics_process(delta):
 			direction = -1
 
 	velocity.x = direction * speed
+
+	_sprite.flip_h = velocity.x < 0
 
 	move_and_slide()
 
