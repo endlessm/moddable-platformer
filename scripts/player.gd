@@ -23,7 +23,7 @@ var original_position: Vector2
 
 func _set_sprite_frames(new_sprite_frames):
 	sprite_frames = new_sprite_frames
-	if is_node_ready():
+	if sprite_frames and is_node_ready():
 		_sprite.sprite_frames = sprite_frames
 
 
