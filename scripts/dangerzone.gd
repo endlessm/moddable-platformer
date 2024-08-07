@@ -13,4 +13,5 @@ signal dangerzone_entered
 
 
 func _on_body_entered(_body):
+	Global.game_ended.emit(Global.Endings.LOSE)
 	dangerzone_entered.emit()

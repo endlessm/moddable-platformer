@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://coq6d3u6wnvs2"]
+[gd_scene load_steps=6 format=3 uid="uid://coq6d3u6wnvs2"]
 
 [ext_resource type="Script" path="res://components/platform/platform.gd" id="1_dpc6h"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1qhm"]
-size = Vector2(192, 64)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4vtk"]
+size = Vector2(384, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o2vn2"]
+size = Vector2(384, 128)
 
 [sub_resource type="Animation" id="Animation_6232f"]
 resource_name = "shake"
@@ -36,19 +39,20 @@ collision_mask = 0
 mass = 1000.0
 freeze = true
 
-[node name="Sprites" type="Node2D" parent="RigidBody2D"]
-unique_name_in_owner = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-unique_name_in_owner = true
-shape = SubResource("RectangleShape2D_x1qhm")
-
 [node name="Area2D" type="Area2D" parent="RigidBody2D"]
 
 [node name="AreaCollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D"]
 unique_name_in_owner = true
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_x1qhm")
+position = Vector2(0, -84)
+shape = SubResource("RectangleShape2D_i4vtk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_o2vn2")
+
+[node name="Sprites" type="Node2D" parent="RigidBody2D"]
+unique_name_in_owner = true
+texture_filter = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RigidBody2D"]
 unique_name_in_owner = true

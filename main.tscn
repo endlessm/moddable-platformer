@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhcpt1kt8cs0g"]
+[gd_scene load_steps=12 format=3 uid="uid://dhcpt1kt8cs0g"]
 
 [ext_resource type="PackedScene" uid="uid://8st4scqt06l8" path="res://components/player/player.tscn" id="2_7yl00"]
 [ext_resource type="PackedScene" uid="uid://jnrusvm3gric" path="res://spaces/background.tscn" id="2_tb5a2"]
@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://dthyncc3spfks" path="res://spaces/dangerzone.tscn" id="4_2mg6t"]
 [ext_resource type="PackedScene" uid="uid://coq6d3u6wnvs2" path="res://components/platform/platform.tscn" id="4_gd51l"]
 [ext_resource type="PackedScene" uid="uid://daf24t18h3n5e" path="res://components/coin/coin.tscn" id="5_u7hr5"]
+[ext_resource type="Texture2D" uid="uid://bjqboxowe07lw" path="res://assets/items/crystal.png" id="6_kpi5m"]
 [ext_resource type="PackedScene" uid="uid://jt80gv02u4f2" path="res://hud.tscn" id="6_mp7wy"]
 [ext_resource type="PackedScene" uid="uid://dk0xon0k7ga23" path="res://components/enemy/enemy.tscn" id="9_l6smt"]
+[ext_resource type="SpriteFrames" uid="uid://bo581k1esb50n" path="res://components/player/spriteframes-red.tres" id="9_qmofe"]
 
 [node name="Main" type="Node2D"]
 
@@ -16,58 +18,201 @@
 win_by_collecting_coins = true
 
 [node name="Background" parent="." instance=ExtResource("2_tb5a2")]
-
-[node name="TileMap" parent="." instance=ExtResource("3_yfnmv")]
-layer_0/tile_data = PackedInt32Array(-65535, 196608, 0, -262140, 0, 0, -65529, 65536, 0)
-layer_1/tile_data = PackedInt32Array(0, 0, 1, 1, 0, 1, 2, 0, 2, -65534, 0, 1, -196605, 393216, 1, -196604, 393216, 1, 6, 327680, 1, 7, 327680, 1, 65544, 327680, 2, 65543, 327680, 2, 65542, 327680, 2, 65538, 0, 2, 65537, 0, 2, 65536, 0, 2, 131080, 327680, 2, 131079, 327680, 2, 196615, 327680, 2, 196614, 327680, 2, 131078, 327680, 2, 196616, 327680, 2, 8, 327680, 1, -65528, 1, 1)
-layer_2/tile_data = PackedInt32Array(9, 458752, 1, 65545, 458752, 2, 131081, 458752, 2, 196617, 458752, 2, 262153, 458752, 2, 327689, 458752, 2, 393225, 458752, 2, 458761, 458752, 2, -65529, 196608, 0, -131070, 131072, 0)
+tint = Color(0.569993, 0.558956, 0.878091, 1)
 
 [node name="Dangerzone" parent="." instance=ExtResource("4_2mg6t")]
-position = Vector2(0, 256)
+position = Vector2(3072, 1216)
+
+[node name="TileMap" parent="." instance=ExtResource("3_yfnmv")]
+position = Vector2(1, 0)
+layer_0/tile_data = PackedInt32Array(327680, 131072, 0, 327681, 131072, 0, 327682, 131072, 0, 327683, 131072, 0, 327684, 131072, 0, 327685, 131072, 0, 327686, 131072, 0, 327687, 131072, 0, 327688, 131072, 0, 327689, 131072, 0, 327690, 196608, 0, 393226, 393216, 1, 393225, 0, 0, 393224, 0, 0, 393223, 0, 0, 393222, 0, 0, 393221, 0, 1, 393220, 0, 0, 393219, 0, 0, 393218, 0, 2, 393217, 0, 1, 393216, 0, 2, 458752, 0, 1, 458753, 0, 2, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 2, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0, 524296, 655360, 1, 524295, 655360, 1, 524294, 655360, 1, 524293, 655360, 1, 524292, 655360, 1, 524289, 0, 0, 524288, 655360, 1, 262146, 0, 0, 196610, 0, 0, 131073, 458752, 2, 131075, 524288, 2, 131074, 131072, 0, 458763, 0, 0, 458764, 0, 0, 458765, 0, 0, 458766, 0, 0, 393230, 327680, 1, 327694, 65536, 0, 327695, 131072, 0, 327696, 131072, 0, 327697, 131072, 0, 327698, 131072, 0, 327699, 131072, 0, 327700, 196608, 0, 393231, 0, 2, 393232, 0, 0, 393233, 0, 2, 393234, 0, 0, 393235, 0, 0, 393236, 0, 2, 458772, 0, 0, 458771, 0, 0, 458770, 0, 0, 458769, 0, 0, 458768, 0, 2, 458767, 0, 0, 524304, 655360, 1, 524305, 655360, 1, 524306, 655360, 1, 524307, 655360, 1, 524308, 655360, 1, 262149, 589824, 0, 262154, 589824, 0, 262158, 589824, 0, 262152, 655360, 0, 589823, 655360, 1, 524287, 655360, 1, 458751, 655360, 1, 393215, 655360, 1, 65535, 655360, 1, 131071, 655360, 1, 196607, 655360, 1, 262143, 655360, 1, 327679, 655360, 1, -1, 655360, 1, -65537, 655360, 1, -131073, 655360, 1, 524316, 655360, 1, 524317, 655360, 1, 524318, 655360, 1, 524319, 655360, 1, 524320, 655360, 1, 524321, 655360, 1, 524322, 655360, 1, 458786, 655360, 1, 393250, 655360, 1, 327714, 655360, 1, 262178, 655360, 1, 196642, 655360, 1, 131106, 655360, 1, 65570, 655360, 1, 34, 655360, 1, -65502, 655360, 1, -196574, 655360, 1, -131038, 655360, 1, 524297, 655360, 1, 524298, 655360, 1, 524299, 655360, 1, 524300, 655360, 1, 524301, 655360, 1, 524302, 655360, 1, 524303, 655360, 1, 524309, 655360, 1, 524315, 655360, 1, 524314, 655360, 1, 524313, 655360, 1, 524312, 655360, 1, 524311, 655360, 1, 524310, 655360, 1, 393227, 131072, 0, 393228, 131072, 0, 393229, 131072, 0, 196638, 196608, 1, 262173, 196608, 1, 327709, 196608, 2, 262174, 196608, 2, 196639, 327680, 2, 196640, 393216, 2, 196641, 327680, 2, 327708, 196608, 1, 393243, 458752, 1, 393244, 196608, 2, 327710, 0, 1, 458782, 0, 1, 393245, 0, 1, 393246, 0, 0, 262175, 0, 0, 262176, 0, 0, 262177, 0, 0, 327713, 0, 0, 327712, 0, 0, 327711, 0, 0, 393247, 0, 2, 393248, 0, 0, 393249, 0, 0, 458785, 0, 0, 458784, 0, 0, 458783, 0, 0, -196573, 0, 0, -196572, 0, 0, -196571, 0, 1, -196570, 0, 0, -196569, 0, 0, -131033, 0, 0, -131034, 0, 0, -131035, 0, 0, -131036, 0, 0, -131037, 0, 0, -262109, 0, 0, -327645, 0, 0, -327644, 0, 1, -327643, 0, 0, -327642, 0, 0, -327641, 0, 0, -262105, 0, 0, -262106, 0, 0, -262107, 0, 0, -262108, 0, 0, -65500, 0, 1, 36, 0, 0, 65572, 0, 0, 131108, 0, 1, 196644, 0, 0, 262180, 0, 0, 327716, 0, 0, 393252, 0, 1, 458788, 0, 0, 524324, 0, 0, 524323, 0, 0, 458787, 0, 0, 393251, 0, 0, 327715, 0, 0, 262179, 0, 0, 196643, 0, 0, 131107, 0, 0, 65571, 0, 0, 35, 0, 0, -65501, 0, 0, -65499, 0, 0, 37, 0, 0, 65573, 0, 1, 131109, 0, 0, 196645, 0, 0, 262181, 0, 1, 327717, 0, 0, 393253, 0, 0, 458789, 0, 0, 524325, 0, 0, 524326, 0, 0, 458790, 0, 0, 393254, 0, 0, 327718, 0, 0, 262182, 0, 0, 196646, 0, 0, 131110, 0, 0, 65574, 0, 0, 38, 0, 0, -65498, 0, 0, -65497, 0, 0, 39, 0, 0, 65575, 0, 0, 131111, 0, 0, 196647, 0, 0, 262183, 0, 0, 327719, 0, 0, 393255, 0, 0, 458791, 0, 0, 524327, 0, 0, -327646, 655360, 1, -262110, 655360, 1, -262145, 655360, 1, -196609, 655360, 1, -327640, 0, 0, -262104, 0, 0, -196568, 0, 0, -131032, 0, 0, -65496, 0, 0, 40, 0, 0, 65576, 0, 0, 131112, 0, 0, 196648, 0, 0, 262184, 0, 0, 327720, 0, 0, 393256, 0, 0, 458792, 0, 0, 524328, 0, 0, -524253, 0, 0, -458717, 0, 0, -393181, 0, 0, -524252, 0, 0, -458716, 0, 1, -393180, 0, 0, -524251, 0, 0, -458715, 0, 0, -393179, 0, 0, -524250, 0, 0, -458714, 0, 0, -393178, 0, 1, -393177, 0, 0, -458713, 0, 0, -524249, 0, 0, -393176, 0, 0, -458712, 0, 0, -524248, 0, 0, -655320, 0, 0, -655321, 0, 0, -655322, 0, 0, -655323, 0, 0, -655324, 0, 0, -655325, 0, 0, -589789, 0, 0, -589788, 0, 0, -589787, 0, 1, -589786, 0, 0, -589785, 0, 0, -589784, 0, 0, -655326, 655360, 1, -589790, 655360, 1, -524254, 655360, 1, -458718, 655360, 1, -393182, 655360, 1, -655319, 0, 0, -589783, 0, 0, -524247, 0, 0, -458711, 0, 0, -393175, 0, 0, -327639, 0, 0, -262103, 0, 0, -196567, 0, 0, -131031, 0, 0, -65495, 0, 0, 41, 0, 0, 65577, 0, 0, 131113, 0, 0, 196649, 0, 0, 262185, 0, 0, 327721, 0, 0, 393257, 0, 0, 458793, 0, 0, 524329, 0, 0, 458780, 0, 0, 458781, 0, 0, 327707, 589824, 2, 458775, 720896, 1, 458774, 589824, 0, 458777, 720896, 0, 262163, 655360, 2, 65537, 720896, 2, 524290, 0, 0, 524291, 0, 0)
 
 [node name="Coins" type="Node2D" parent="."]
 
 [node name="Coin" parent="Coins" instance=ExtResource("5_u7hr5")]
-position = Vector2(283, -237)
+modulate = Color(1, 1, 0, 1)
+position = Vector2(1472, 320)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin3" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(1600, 256)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin4" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(1728, 320)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin5" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2880, 128)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin6" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(3136, -384)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin7" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(3392, 128)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin12" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(3520, 128)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin13" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(3264, 128)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin14" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(3008, 128)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin15" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2752, 128)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin16" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(3840, 832)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin17" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(3712, 960)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin20" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(3840, 704)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin18" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(3456, 960)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin21" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(3584, 960)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin19" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(3840, 960)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin9" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(960, 576)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin10" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(3008, -320)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin11" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(3264, -320)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
 
 [node name="Platforms" type="Node2D" parent="."]
+position = Vector2(1920, -64)
 
 [node name="Platform" parent="Platforms" instance=ExtResource("4_gd51l")]
-position = Vector2(-113, 23)
+position = Vector2(960, 320)
 width = 2
 
-[node name="Platform2" parent="Platforms" instance=ExtResource("4_gd51l")]
-position = Vector2(-283, 24)
-width = 1
-
-[node name="Platform3" parent="Platforms" instance=ExtResource("4_gd51l")]
-position = Vector2(-549, -82)
-type = 1
+[node name="Platform4" parent="Platforms" instance=ExtResource("4_gd51l")]
+position = Vector2(-1472, 0)
+width = 2
 one_way = true
 fall_time = 2.0
 
-[node name="Platform4" parent="Platforms" instance=ExtResource("4_gd51l")]
-position = Vector2(-570, 16)
-type = 1
-width = 6
+[node name="Platform5" parent="Platforms" instance=ExtResource("4_gd51l")]
+position = Vector2(-1152, 0)
+width = 2
+one_way = true
+fall_time = 2.0
+
+[node name="Platform6" parent="Platforms" instance=ExtResource("4_gd51l")]
+position = Vector2(-832, 0)
+width = 2
+one_way = true
+fall_time = 2.0
+
+[node name="Platform7" parent="Platforms" instance=ExtResource("4_gd51l")]
+position = Vector2(-512, 0)
+width = 2
+one_way = true
+fall_time = 2.0
+
+[node name="Platform8" parent="Platforms" instance=ExtResource("4_gd51l")]
+position = Vector2(-192, 0)
+width = 2
+one_way = true
+fall_time = 2.0
+
+[node name="Platform9" parent="Platforms" instance=ExtResource("4_gd51l")]
+position = Vector2(128, 0)
+width = 2
+one_way = true
+fall_time = 2.0
+
+[node name="Platform2" parent="Platforms" instance=ExtResource("4_gd51l")]
+position = Vector2(1216, -64)
+width = 2
+
+[node name="Platform3" parent="Platforms" instance=ExtResource("4_gd51l")]
+position = Vector2(1472, 320)
+width = 2
 
 [node name="Player" parent="." instance=ExtResource("2_7yl00")]
-position = Vector2(16, -32)
+position = Vector2(512, 576)
 collision_layer = 1
 collision_mask = 7
+sprite_frames = ExtResource("9_qmofe")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(-16, 32)
-zoom = Vector2(2, 2)
-limit_bottom = 270
+position = Vector2(0, 15)
+limit_left = 0
+limit_bottom = 1080
+position_smoothing_enabled = true
 
 [node name="HUD" parent="." instance=ExtResource("6_mp7wy")]
 
 [node name="Enemy" parent="." instance=ExtResource("9_l6smt")]
-position = Vector2(-408, -67)
-speed = 100.0
+position = Vector2(1600, 704)
 
 [node name="Enemy2" parent="." instance=ExtResource("9_l6smt")]
-position = Vector2(-85, -74)
-speed = 50.0
-start_direction = 1
+position = Vector2(1920, 576)
+
+[node name="Enemy3" parent="." instance=ExtResource("9_l6smt")]
+position = Vector2(4096, 960)
