@@ -44,7 +44,6 @@ func _recreate_sprites():
 	for c in _sprites.get_children():
 		c.queue_free()
 
-	_collision_shape.shape = RectangleShape2D.new()
 	_collision_shape.one_way_collision = one_way
 	_collision_shape.shape.set_size(Vector2(width * TILE_WIDTH, TILE_WIDTH))
 	_area_collision_shape.shape.set_size(
