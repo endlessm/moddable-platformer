@@ -18,6 +18,9 @@ extends Node
 ## If zero (default), there won't be a time limit to win.
 @export_range(0, 60, 0.9, "or_greater") var time_limit: int = 0
 
+## How many lives does the player have?
+@export_range(1, 9) var lives: int = 3
+
 @export_group("World Properties")
 
 # Keep default the same as ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -46,6 +49,7 @@ func _ready():
 			var coins = []
 			_get_all_coins(get_parent(), coins)
 			coins_to_win = coins.size()
+	Global.lives = lives
 
 	if time_limit > 0:
 		Global.setup_timer(time_limit)

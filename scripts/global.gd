@@ -1,6 +1,7 @@
 extends Node
 
 signal coin_collected
+signal lives_changed
 signal game_ended(ending: Endings)
 signal gravity_changed(gravity: float)
 signal timer_added
@@ -12,6 +13,10 @@ var timer: Timer
 
 ## Stores the collected coins.
 var coins: int = 0
+
+## Stores the number of remaining lives.
+var lives: int = 0:
+	set = _set_lives
 
 
 func collect_coin():
@@ -30,3 +35,12 @@ func setup_timer(time_limit: int):
 
 func _on_timer_timeout():
 	game_ended.emit(Endings.LOSE)
+
+
+func _set_lives(value):
+	if value < 0:
+		return
+	lives = value
+	lives_changed.emit()
+	if lives <= 0:
+		game_ended.emit(Global.Endings.LOSE)

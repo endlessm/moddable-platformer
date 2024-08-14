@@ -12,6 +12,7 @@ func _process(_delta):
 
 func _ready():
 	Global.coin_collected.connect(_on_coin_collected)
+	Global.lives_changed.connect(_on_lives_changed)
 	Global.game_ended.connect(_on_game_ended)
 	Global.timer_added.connect(_on_timer_added)
 	set_process(false)
@@ -34,6 +35,14 @@ func set_collected_coins(coins: int):
 func _on_timer_added():
 	%TimeLeft.visible = true
 	set_process(true)
+
+
+func _on_lives_changed():
+	set_lives(Global.lives)
+
+
+func set_lives(lives: int):
+	%Lives.offset_right = %Lives.offset_left + lives * %Lives.texture.get_width()
 
 
 func _on_game_ended(ending: Global.Endings):

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://jt80gv02u4f2"]
+[gd_scene load_steps=3 format=3 uid="uid://jt80gv02u4f2"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_8msyy"]
+[ext_resource type="Texture2D" uid="uid://d3um1i1lgu153" path="res://assets/heart.png" id="2_yyptq"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_8msyy")
@@ -83,3 +84,13 @@ offset_right = 306.0
 offset_bottom = 128.0
 theme_override_font_sizes/font_size = 64
 text = "0"
+
+[node name="Lives" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 60.0
+offset_top = 220.0
+offset_right = 124.0
+offset_bottom = 284.0
+texture = ExtResource("2_yyptq")
+expand_mode = 1
+stretch_mode = 1
