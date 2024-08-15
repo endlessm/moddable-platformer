@@ -1,3 +1,4 @@
+@tool
 extends CanvasLayer
 
 @onready var ending_labels = {
@@ -11,12 +12,17 @@ func _process(_delta):
 
 
 func _ready():
-	Global.coin_collected.connect(_on_coin_collected)
-	Global.lives_changed.connect(_on_lives_changed)
-	Global.game_ended.connect(_on_game_ended)
-	Global.timer_added.connect(_on_timer_added)
 	set_process(false)
 	set_physics_process(false)
+
+	Global.lives_changed.connect(_on_lives_changed)
+
+	if Engine.is_editor_hint():
+		return
+
+	Global.coin_collected.connect(_on_coin_collected)
+	Global.game_ended.connect(_on_game_ended)
+	Global.timer_added.connect(_on_timer_added)
 
 
 func _unhandled_input(event):

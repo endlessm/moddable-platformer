@@ -1,3 +1,4 @@
+@tool
 class_name GameLogic
 extends Node
 
@@ -19,13 +20,19 @@ extends Node
 @export_range(0, 60, 0.9, "or_greater") var time_limit: int = 0
 
 ## How many lives does the player have?
-@export_range(1, 9) var lives: int = 3
+@export_range(1, 9) var lives: int = 3:
+	set = _set_lives
 
 @export_group("World Properties")
 
 # Keep default the same as ProjectSettings.get_setting("physics/2d/default_gravity")
 ## This is the gravity of the world. In pixels per second squared.
 @export_range(-2000.0, 2000.0, 0.1, "suffix:px/s²") var gravity: float = 980.0
+
+
+func _set_lives(new_lives):
+	lives = new_lives
+	Global.lives = lives
 
 
 func _get_all_coins(node, accumulator = []):
@@ -37,6 +44,9 @@ func _get_all_coins(node, accumulator = []):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if Engine.is_editor_hint():
+		return
+
 	await get_parent().ready
 	# Set the gravity strength at runtime:
 	PhysicsServer2D.area_set_param(
@@ -49,10 +59,11 @@ func _ready():
 			var coins = []
 			_get_all_coins(get_parent(), coins)
 			coins_to_win = coins.size()
-	Global.lives = lives
 
 	if time_limit > 0:
 		Global.setup_timer(time_limit)
+
+	_set_lives(lives)
 
 
 func _on_coin_collected():
