@@ -44,6 +44,7 @@ func _ready():
 		set_physics_process(false)
 	else:
 		Global.gravity_changed.connect(_on_gravity_changed)
+		Global.lives_changed.connect(_on_lives_changed)
 
 	original_position = position
 	_set_speed(speed)
@@ -55,6 +56,10 @@ func _on_gravity_changed(new_gravity):
 
 
 func _physics_process(delta):
+	# Don't move if there are no lives left.
+	if Global.lives <= 0:
+		return
+
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -88,3 +93,8 @@ func _physics_process(delta):
 
 func reset():
 	position = original_position
+
+
+func _on_lives_changed():
+	if Global.lives > 0:
+		reset()

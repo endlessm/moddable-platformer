@@ -8,8 +8,8 @@ extends CharacterBody2D
 ## Does the enemy fall off edges?
 @export var fall_off_edge: bool = false
 
-## Does the enemy reset the player?
-@export var reset_player: bool = true
+## Does the player lose a life when contacting the enemy?
+@export var player_loses_life: bool = true
 
 ## Can the enemy be squashed by the player?
 @export var squashable: bool = true
@@ -73,6 +73,5 @@ func _on_hitbox_body_entered(body):
 		if squashable and body.velocity.y > 0 and body.position.y < position.y:
 			body.velocity.y = body.jump_velocity
 			queue_free()
-		else:
-			if reset_player:
-				body.reset()
+		elif player_loses_life:
+			Global.lives -= 1
