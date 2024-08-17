@@ -14,6 +14,15 @@ extends Node
 ## the game won't be winnable.
 @export_range(0, 100, 0.9, "or_greater") var coins_to_win: int = 0
 
+## Should you win the game by reaching a flag?[br]
+## If the option to win by collecting coins is also set, then it will only be
+## possible to win by collecting enough coins and then reaching a flag.
+@export var win_by_reaching_flag: bool = false
+
+## Win by reaching a specific flag. Otherwise, the player can win by reaching
+## any flag placed in the scene.
+@export var flag_to_win: Flag = null
+
 @export_group("Challenges")
 ## You lose if this time runs out.
 ## If zero (default), there won't be a time limit to win.
@@ -59,6 +68,8 @@ func _ready():
 			var coins = []
 			_get_all_coins(get_parent(), coins)
 			coins_to_win = coins.size()
+	if win_by_reaching_flag:
+		Global.flag_raised.connect(_on_flag_raised)
 
 	if time_limit > 0:
 		Global.setup_timer(time_limit)
@@ -67,5 +78,29 @@ func _ready():
 
 
 func _on_coin_collected():
-	if win_by_collecting_coins and Global.coins >= coins_to_win:
+	if _check_win_conditions(flag_to_win):
 		Global.game_ended.emit(Global.Endings.WIN)
+
+
+func _on_flag_raised(flag: Flag):
+	if _check_win_conditions(flag_to_win if flag_to_win else flag):
+		Global.game_ended.emit(Global.Endings.WIN)
+	elif flag_to_win == null or flag == flag_to_win:
+		# Put the ending flag back if the player hasn't satisfied conditions.
+		flag.flag_position = Flag.FlagPosition.DOWN
+
+
+func _check_win_conditions(flag: Flag):
+	if not win_by_collecting_coins and not win_by_reaching_flag:
+		return false
+
+	if win_by_collecting_coins and Global.coins < coins_to_win:
+		return false
+
+	if win_by_reaching_flag and flag == null:
+		return false
+
+	if win_by_reaching_flag and flag.flag_position == Flag.FlagPosition.DOWN:
+		return false
+
+	return true

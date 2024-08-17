@@ -2,6 +2,7 @@
 extends Node
 
 signal coin_collected
+signal flag_raised(flag: Flag)
 signal lives_changed
 signal game_ended(ending: Endings)
 signal gravity_changed(gravity: float)
@@ -23,6 +24,10 @@ var lives: int = 0:
 func collect_coin():
 	coins += 1
 	coin_collected.emit()
+
+
+func raise_flag(flag: Flag):
+	flag_raised.emit(flag)
 
 
 func setup_timer(time_limit: int):
