@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk2argmujy0kk"]
+
+[ext_resource type="Script" path="res://addons/block_code/ui/blocks/control_block/control_block.gd" id="1_2hbir"]
+[ext_resource type="PackedScene" uid="uid://b1oge52xhjqnu" path="res://addons/block_code/ui/blocks/utilities/snap_point/snap_point.tscn" id="3_nhryi"]
+
+[node name="ControlBlock" type="MarginContainer"]
+size_flags_horizontal = 0
+focus_mode = 2
+mouse_filter = 2
+script = ExtResource("1_2hbir")
+block_name = &"control_block"
+label = "Control Block"
+color = Color(0.59979, 0.536348, 0.876215, 1)
+bottom_snap_path = NodePath("VBoxContainer/SnapPoint")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="Rows" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="SnapPoint" parent="VBoxContainer" instance=ExtResource("3_nhryi")]
+layout_mode = 2

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://barxsapb8tl0r"]
+
+[ext_resource type="Script" path="res://addons/block_code/code_generation/block_definition.gd" id="1_0lih2"]
+
+[resource]
+script = ExtResource("1_0lih2")
+name = &"print"
+target_node_class = ""
+description = "Print the text to output"
+category = "Log"
+type = 2
+variant_type = 0
+display_template = "Print {text: STRING}"
+code_template = "print({text})"
+defaults = {
+"text": "Hello"
+}
+signal_name = ""
+scope = ""

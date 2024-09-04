@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1oge52xhjqnu"]
+
+[ext_resource type="Script" path="res://addons/block_code/ui/blocks/utilities/snap_point/snap_point.gd" id="1_kseym"]
+
+[node name="SnapPoint" type="MarginContainer" groups=["snap_point"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_kseym")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]

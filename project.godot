@@ -27,6 +27,10 @@ window/size/window_width_override=960
 window/size/window_height_override=540
 window/stretch/mode="canvas_items"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/block_code/plugin.cfg")
+
 [layer_names]
 
 2d_physics/layer_1="Player"
