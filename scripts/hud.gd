@@ -20,7 +20,7 @@ func _ready():
 	if Engine.is_editor_hint():
 		return
 
-	Global.coin_collected.connect(_on_coin_collected)
+	%GameLogic.coin_collected.connect(_on_coin_collected)
 	Global.game_ended.connect(_on_game_ended)
 	Global.timer_added.connect(_on_timer_added)
 
@@ -31,7 +31,7 @@ func _unhandled_input(event):
 
 
 func _on_coin_collected():
-	set_collected_coins(Global.coins)
+	set_collected_coins(%GameLogic.coins)
 
 
 func set_collected_coins(coins: int):

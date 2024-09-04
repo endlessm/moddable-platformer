@@ -2,6 +2,8 @@
 class_name GameLogic
 extends Node
 
+signal coin_collected
+
 @export_group("Win Condition")
 
 ## Should you win the game by collecting coins?
@@ -38,6 +40,14 @@ extends Node
 ## This is the gravity of the world. In pixels per second squared.
 @export_range(-2000.0, 2000.0, 0.1, "suffix:px/s²") var gravity: float = 980.0
 
+## Stores the collected coins.
+var coins: int = 0
+
+
+func collect_coin():
+	coins += 1
+	coin_collected.emit()
+
 
 func _set_lives(new_lives):
 	lives = new_lives
@@ -63,7 +73,7 @@ func _ready():
 	)
 	Global.gravity_changed.emit(gravity)
 	if win_by_collecting_coins:
-		Global.coin_collected.connect(_on_coin_collected)
+		coin_collected.connect(_on_coin_collected)
 		if coins_to_win == 0:
 			var coins = []
 			_get_all_coins(get_parent(), coins)
@@ -94,7 +104,7 @@ func _check_win_conditions(flag: Flag):
 	if not win_by_collecting_coins and not win_by_reaching_flag:
 		return false
 
-	if win_by_collecting_coins and Global.coins < coins_to_win:
+	if win_by_collecting_coins and %GameLogic.coins < coins_to_win:
 		return false
 
 	if win_by_reaching_flag and flag == null:

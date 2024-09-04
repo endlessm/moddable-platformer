@@ -1,7 +1,6 @@
 @tool
 extends Node
 
-signal coin_collected
 signal flag_raised(flag: Flag)
 signal lives_changed
 signal game_ended(ending: Endings)
@@ -13,17 +12,9 @@ enum Endings { WIN, LOSE }
 ## Timer for finishing the level.
 var timer: Timer
 
-## Stores the collected coins.
-var coins: int = 0
-
 ## Stores the number of remaining lives.
 var lives: int = 0:
 	set = _set_lives
-
-
-func collect_coin():
-	coins += 1
-	coin_collected.emit()
 
 
 func raise_flag(flag: Flag):
