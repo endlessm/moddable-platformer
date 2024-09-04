@@ -1,24 +1,14 @@
-# Godot Minigames
+# Moddable Platformer
 
-Mini games from [Endless OS Foundation](https://endlessos.org) intended to help ease the learning curve into Godot.
+This mini moddable game project by [Endless OS Foundation](https://endlessos.org) is intended to help ease the learning curve into Godot.
 
-See the `doc/` folder inside each game's subdirectory for more information on each game!
+This sample project allows learners to engage with game creation concepts, applying various modifications to the game itself, all without reading or writing any code.
 
-## Opening Projects
-
-For now:
-
-1. Clone this repository (or download it as a zip and extract it)
-2. Open Godot; from the Project Manager window select **Import** and navigate to the folder for this repository
-3. Select the subdirectory for the game you want to import (e.g. `pong`)
-
-We plan to export these minigames somewhere more accessible, e.g. as release on GitHub or to Itch.io in the future.
+The `doc/MODS.md` file details the mods that have been made available.
 
 ## Contributing
 
-This repo is being developed internally based on the needs and active pilots of the Endless learning team. Endless team members should **communicate openly with the team to avoid potential merge conflicts**, as we are still learning best practices for collaborative development of a Godot project.
-
-External contributions are welcome, but may be difficult to integrate during periods of more rapid development; **communicating with the Endless team via filing an issue against this repo is highly encouraged** before sinking too much time into a PR.
+We encourage contributions that continue to address the intended audience and design of of this project. You can communicate with us through the [Endless Studios](https://endlessstudios.com) community platform and submit pull requests via GitLab.
 
 ### Development environment
 
