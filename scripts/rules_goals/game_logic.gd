@@ -55,7 +55,7 @@ func _set_lives(new_lives):
 
 
 func _get_all_coins(node, accumulator = []):
-	if node is Coin:
+	if node.is_in_group("Coin"):
 		accumulator.append(node)
 	for child in node.get_children():
 		_get_all_coins(child, accumulator)
@@ -75,9 +75,9 @@ func _ready():
 	if win_by_collecting_coins:
 		coin_collected.connect(_on_coin_collected)
 		if coins_to_win == 0:
-			var coins = []
-			_get_all_coins(get_parent(), coins)
-			coins_to_win = coins.size()
+			var all_coins = []
+			_get_all_coins(get_parent(), all_coins)
+			coins_to_win = all_coins.size()
 	if win_by_reaching_flag:
 		Global.flag_raised.connect(_on_flag_raised)
 
