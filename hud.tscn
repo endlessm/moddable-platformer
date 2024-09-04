@@ -1,7 +1,54 @@
-[gd_scene load_steps=3 format=3 uid="uid://jt80gv02u4f2"]
+[gd_scene load_steps=13 format=3 uid="uid://jt80gv02u4f2"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_8msyy"]
+[ext_resource type="Script" path="res://addons/block_code/block_code_node/block_code.gd" id="2_prn0q"]
 [ext_resource type="Texture2D" uid="uid://d3um1i1lgu153" path="res://assets/heart.png" id="2_yyptq"]
+[ext_resource type="Script" path="res://addons/block_code/serialization/block_serialization.gd" id="3_20bx3"]
+[ext_resource type="Script" path="res://addons/block_code/serialization/block_serialized_properties.gd" id="4_nfuy1"]
+[ext_resource type="Script" path="res://addons/block_code/serialization/block_script_serialization.gd" id="5_7xgsx"]
+[ext_resource type="Script" path="res://addons/block_code/ui/block_canvas/variable_resource.gd" id="6_c4shd"]
+
+[sub_resource type="Resource" id="Resource_kf0lb"]
+script = ExtResource("4_nfuy1")
+block_class = &"EntryBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {
+"method_name": "show_win"
+}]]
+
+[sub_resource type="Resource" id="Resource_0s6e2"]
+script = ExtResource("4_nfuy1")
+block_class = &"StatementBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {
+"value": true
+}]]
+
+[sub_resource type="Resource" id="Resource_7bjqq"]
+script = ExtResource("3_20bx3")
+name = &"CanvasItem_set_visible"
+position = Vector2(0, 0)
+path_child_pairs = []
+block_serialized_properties = SubResource("Resource_0s6e2")
+
+[sub_resource type="Resource" id="Resource_yjxxf"]
+script = ExtResource("3_20bx3")
+name = &"define_method"
+position = Vector2(125, 75)
+path_child_pairs = [[NodePath("VBoxContainer/SnapPoint"), SubResource("Resource_7bjqq")]]
+block_serialized_properties = SubResource("Resource_kf0lb")
+
+[sub_resource type="Resource" id="Resource_edxs8"]
+script = ExtResource("5_7xgsx")
+script_inherits = "Label"
+block_trees = Array[ExtResource("3_20bx3")]([SubResource("Resource_yjxxf")])
+variables = Array[ExtResource("6_c4shd")]([])
+generated_script = "extends Label
+
+
+func show_win():
+	visible = true
+
+"
+version = 0
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_8msyy")
@@ -26,7 +73,7 @@ text = "Press any key
 to Start"
 horizontal_alignment = 1
 
-[node name="WinEnding" type="Label" parent="."]
+[node name="WinEnding" type="Label" parent="." groups=["HUD"]]
 unique_name_in_owner = true
 visible = false
 top_level = true
@@ -45,6 +92,10 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 64
 text = "You Win!"
 horizontal_alignment = 1
+
+[node name="BlockCode" type="Node" parent="WinEnding"]
+script = ExtResource("2_prn0q")
+block_script = SubResource("Resource_edxs8")
 
 [node name="LoseEnding" type="Label" parent="."]
 unique_name_in_owner = true
