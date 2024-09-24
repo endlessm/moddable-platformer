@@ -4,3 +4,6 @@
 # Exclude GitHub Actions-related files from published asset
 /.github                  export-ignore
 /asset-template.json.hb   export-ignore
+
+# Substitute project version when publishing
+/project.godot            export-subst
