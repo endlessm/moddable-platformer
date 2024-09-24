@@ -8,7 +8,11 @@ The `doc/MODS.md` file details the mods that have been made available.
 
 ## Contributing
 
-We encourage contributions that continue to address the intended audience and design of of this project. You can communicate with us through the [Endless Studios](https://endlessstudios.com) community platform and submit pull requests via GitLab.
+We encourage contributions that continue to address the intended audience and
+design of of this project. You can communicate with us through the [Endless
+Studios](https://endlessstudios.com/studio/games/Moddable-Platformer) community
+platform and submit pull requests via
+[GitHub](https://github.com/endlessm/moddable-platformer).
 
 ### Development environment
 
