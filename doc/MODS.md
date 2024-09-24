@@ -119,5 +119,3 @@ appearance and animation.
 The same customisation can be done on the `Flag` node, by selecting that one,
 and using the `Sprite Frames` `Quick Load` to select the alternative flag
 design.
-
-
