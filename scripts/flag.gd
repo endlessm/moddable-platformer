@@ -4,7 +4,7 @@ extends Area2D
 
 enum FlagPosition {
 	DOWN,
-	UP
+	UP,
 }
 
 ## Use this to change the sprite frames of the flag.
