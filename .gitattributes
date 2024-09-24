@@ -1,2 +1,6 @@
 # Normalize EOL for all files that Git considers text files.
 * text=auto eol=lf
+
+# Exclude GitHub Actions-related files from published asset
+/.github                  export-ignore
+/asset-template.json.hb   export-ignore
