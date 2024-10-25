@@ -93,6 +93,7 @@ func _physics_process(delta):
 
 func reset():
 	position = original_position
+	velocity = Vector2.ZERO
 
 
 func _on_lives_changed():
