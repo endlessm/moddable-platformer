@@ -9,6 +9,9 @@ extends CharacterBody2D
 @export_range(0, 1000, 10, "suffix:px/s") var speed: float = 500.0:
 	set = _set_speed
 
+## How fast does your character accelerate?
+@export_range(0, 5000, 1000, "suffix:px/s²") var acceleration: float = 5000.0
+
 ## How high does your character jump? Note that the gravity will
 ## be influenced by the [member GameLogic.gravity].
 @export_range(-1000, 1000, 10, "suffix:px/s") var jump_velocity = -880.0
@@ -106,9 +109,13 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
-		velocity.x = direction * speed
+		velocity.x = move_toward(
+			velocity.x,
+			sign(direction) * speed,
+			abs(direction) * acceleration * delta,
+		)
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.x = move_toward(velocity.x, 0, acceleration * delta)
 
 	if velocity == Vector2.ZERO:
 		_sprite.play("idle")
