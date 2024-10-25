@@ -26,7 +26,7 @@ extends Node
 @export_group("Challenges")
 ## You lose if this time runs out.
 ## If zero (default), there won't be a time limit to win.
-@export_range(0, 60, 0.9, "or_greater") var time_limit: int = 0
+@export_range(0, 60, 0.9, "or_greater", "suffix:s") var time_limit: int = 0
 
 ## How many lives does the player have?
 @export_range(1, 9) var lives: int = 3:
