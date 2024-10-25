@@ -6,12 +6,12 @@ extends CharacterBody2D
 	set = _set_sprite_frames
 
 ## How fast does your character move?
-@export_range(0, 1000, 10) var speed: float = 500.0:
+@export_range(0, 1000, 10, "suffix:px/s") var speed: float = 500.0:
 	set = _set_speed
 
 ## How high does your character jump? Note that the gravity will
 ## be influenced by the [member GameLogic.gravity].
-@export_range(-1000, 1000, 10) var jump_velocity = -880.0
+@export_range(-1000, 1000, 10, "suffix:px/s") var jump_velocity = -880.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")

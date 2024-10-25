@@ -2,7 +2,7 @@ class_name Enemy
 extends CharacterBody2D
 
 ## How fast does your enemy move?
-@export_range(0, 1000, 10) var speed: float = 100.0:
+@export_range(0, 1000, 10, "suffix:px/s") var speed: float = 100.0:
 	set = _set_speed
 
 ## Does the enemy fall off edges?

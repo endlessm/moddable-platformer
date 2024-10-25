@@ -6,7 +6,7 @@ const TILE_WIDTH: int = 128
 const SPRITE: Texture2D = preload("res://assets/tiles-a.png")
 
 ## How many tiles wide is the platform?
-@export_range(1, 20, 1) var width: int = 3:
+@export_range(1, 20, 1, "suffix:tiles") var width: int = 3:
 	set = _set_width
 
 ## Can you jump through the bottom of the platform?
