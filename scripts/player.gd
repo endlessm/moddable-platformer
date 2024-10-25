@@ -20,11 +20,16 @@ const JUMP_BUFFER_DURATION: float = 0.1
 ## be influenced by the [member GameLogic.gravity].
 @export_range(-1000, 1000, 10, "suffix:px/s") var jump_velocity = -880.0
 
+## Can your character jump a second time while still in the air?
+@export var double_jump: bool = false
+
 # If positive, the player is either on the ground, or left the ground less than this long ago
 var coyote_timer: float = 0
 
 # If positive, the player pressed jump this long ago
 var jump_buffer_timer: float = 0
+
+var double_jump_armed: bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -32,6 +37,7 @@ var original_position: Vector2
 
 @onready var _sprite: AnimatedSprite2D = %AnimatedSprite2D
 @onready var _initial_sprite_frames: SpriteFrames = %AnimatedSprite2D.sprite_frames
+@onready var _particles: CPUParticles2D = %CPUParticles2D
 
 
 func _set_sprite_frames(new_sprite_frames):
@@ -76,14 +82,20 @@ func _physics_process(delta):
 	# Handle jump
 	if is_on_floor():
 		coyote_timer = COYOTE_TIME_DURATION
+		double_jump_armed = false
 
 	if Input.is_action_just_pressed("ui_accept"):
 		jump_buffer_timer = JUMP_BUFFER_DURATION
 
-	if jump_buffer_timer > 0 and coyote_timer > 0:
+	if jump_buffer_timer > 0 and (double_jump_armed or coyote_timer > 0):
 		velocity.y = jump_velocity
 		coyote_timer = 0
 		jump_buffer_timer = 0
+		if double_jump_armed:
+			double_jump_armed = false
+			_particles.emitting = true
+		elif double_jump:
+			double_jump_armed = true
 
 	# Reduce velocity if the player lets go of the jump key before the apex.
 	# This allows controlling the height of the jump.
