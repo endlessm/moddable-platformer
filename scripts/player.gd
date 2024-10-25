@@ -13,6 +13,11 @@ extends CharacterBody2D
 ## be influenced by the [member GameLogic.gravity].
 @export_range(-1000, 1000, 10, "suffix:px/s") var jump_velocity = -880.0
 
+## How much should the character's jump be reduced if you let go of the jump
+## key before the top of the jump? [code]0[/code] means “not at all”;
+## [code]100[/code] means “upwards movement completely stops”.
+@export_range(0, 100, 5, "suffix:%") var jump_cut_factor: float = 20
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var original_position: Vector2
@@ -67,6 +72,11 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = jump_velocity
+
+	# Reduce velocity if the player lets go of the jump key before the apex.
+	# This allows controlling the height of the jump.
+	if Input.is_action_just_released("ui_accept") and velocity.y < 0:
+		velocity.y *= (1 - (jump_cut_factor / 100.00))
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
