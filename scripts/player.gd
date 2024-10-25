@@ -23,8 +23,16 @@ extends CharacterBody2D
 ## margin for error before they start falling.
 @export_range(0, 0.5, 1 / 60.0, "suffix:s") var coyote_time: float = 5.0 / 60.0
 
+## If the character is about to land on the floor, how early can the player
+## the jump key to jump as soon as the character lands? This is often set to
+## a small positive number to allow the player a little margin for error.
+@export_range(0, 0.5, 1 / 60.0, "suffix:s") var jump_buffer: float = 5.0 / 60.0
+
 # If positive, the player is either on the ground, or left the ground less than this long ago
 var coyote_timer: float = 0
+
+# If positive, the player pressed jump this long ago
+var jump_buffer_timer: float = 0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -77,9 +85,13 @@ func _physics_process(delta):
 	if is_on_floor():
 		coyote_timer = (coyote_time + delta)
 
-	if Input.is_action_just_pressed("ui_accept") and coyote_timer > 0:
+	if Input.is_action_just_pressed("ui_accept"):
+		jump_buffer_timer = (jump_buffer + delta)
+
+	if jump_buffer_timer > 0 and coyote_timer > 0:
 		velocity.y = jump_velocity
 		coyote_timer = 0
+		jump_buffer_timer = 0
 
 	# Reduce velocity if the player lets go of the jump key before the apex.
 	# This allows controlling the height of the jump.
@@ -113,12 +125,14 @@ func _physics_process(delta):
 	move_and_slide()
 
 	coyote_timer -= delta
+	jump_buffer_timer -= delta
 
 
 func reset():
 	position = original_position
 	velocity = Vector2.ZERO
 	coyote_timer = 0
+	jump_buffer_timer = 0
 
 
 func _on_lives_changed():
