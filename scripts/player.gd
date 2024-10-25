@@ -1,6 +1,8 @@
 @tool
 extends CharacterBody2D
 
+const JUMP_CUT_FACTOR: float = 0.8
+
 ## Use this to change the sprite frames of your character.
 @export var sprite_frames: SpriteFrames = _initial_sprite_frames:
 	set = _set_sprite_frames
@@ -67,6 +69,11 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = jump_velocity
+
+	# Reduce velocity if the player lets go of the jump key before the apex.
+	# This allows controlling the height of the jump.
+	if Input.is_action_just_released("ui_accept") and velocity.y < 0:
+		velocity.y *= JUMP_CUT_FACTOR
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
