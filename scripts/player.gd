@@ -1,6 +1,10 @@
 @tool
 extends CharacterBody2D
 
+const JUMP_CUT_FACTOR: float = 0.8
+const COYOTE_TIME_DURATION: float = 0.1
+const JUMP_BUFFER_DURATION: float = 0.1
+
 ## Use this to change the sprite frames of your character.
 @export var sprite_frames: SpriteFrames = _initial_sprite_frames:
 	set = _set_sprite_frames
@@ -9,9 +13,23 @@ extends CharacterBody2D
 @export_range(0, 1000, 10, "suffix:px/s") var speed: float = 500.0:
 	set = _set_speed
 
+## How fast does your character accelerate?
+@export_range(0, 5000, 1000, "suffix:px/s²") var acceleration: float = 5000.0
+
 ## How high does your character jump? Note that the gravity will
 ## be influenced by the [member GameLogic.gravity].
 @export_range(-1000, 1000, 10, "suffix:px/s") var jump_velocity = -880.0
+
+## Can your character jump a second time while still in the air?
+@export var double_jump: bool = false
+
+# If positive, the player is either on the ground, or left the ground less than this long ago
+var coyote_timer: float = 0
+
+# If positive, the player pressed jump this long ago
+var jump_buffer_timer: float = 0
+
+var double_jump_armed: bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -19,6 +37,7 @@ var original_position: Vector2
 
 @onready var _sprite: AnimatedSprite2D = %AnimatedSprite2D
 @onready var _initial_sprite_frames: SpriteFrames = %AnimatedSprite2D.sprite_frames
+@onready var _particles: CPUParticles2D = %CPUParticles2D
 
 
 func _set_sprite_frames(new_sprite_frames):
@@ -60,21 +79,44 @@ func _physics_process(delta):
 	if Global.lives <= 0:
 		return
 
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	# Handle jump
+	if is_on_floor():
+		coyote_timer = COYOTE_TIME_DURATION
+		double_jump_armed = false
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("ui_accept"):
+		jump_buffer_timer = JUMP_BUFFER_DURATION
+
+	if jump_buffer_timer > 0 and (double_jump_armed or coyote_timer > 0):
 		velocity.y = jump_velocity
+		coyote_timer = 0
+		jump_buffer_timer = 0
+		if double_jump_armed:
+			double_jump_armed = false
+			_particles.emitting = true
+		elif double_jump:
+			double_jump_armed = true
+
+	# Reduce velocity if the player lets go of the jump key before the apex.
+	# This allows controlling the height of the jump.
+	if Input.is_action_just_released("ui_accept") and velocity.y < 0:
+		velocity.y *= JUMP_CUT_FACTOR
+
+	# Add the gravity.
+	if coyote_timer <= 0:
+		velocity.y += gravity * delta
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
-		velocity.x = direction * speed
+		velocity.x = move_toward(
+			velocity.x,
+			sign(direction) * speed,
+			abs(direction) * acceleration * delta,
+		)
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.x = move_toward(velocity.x, 0, acceleration * delta)
 
 	if velocity == Vector2.ZERO:
 		_sprite.play("idle")
@@ -90,10 +132,15 @@ func _physics_process(delta):
 
 	move_and_slide()
 
+	coyote_timer -= delta
+	jump_buffer_timer -= delta
+
 
 func reset():
 	position = original_position
 	velocity = Vector2.ZERO
+	coyote_timer = 0
+	jump_buffer_timer = 0
 
 
 func _on_lives_changed():
