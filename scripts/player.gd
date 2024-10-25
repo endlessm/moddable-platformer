@@ -2,6 +2,7 @@
 extends CharacterBody2D
 
 const JUMP_CUT_FACTOR: float = 0.8
+const COYOTE_TIME_DURATION: float = 0.1
 
 ## Use this to change the sprite frames of your character.
 @export var sprite_frames: SpriteFrames = _initial_sprite_frames:
@@ -14,6 +15,9 @@ const JUMP_CUT_FACTOR: float = 0.8
 ## How high does your character jump? Note that the gravity will
 ## be influenced by the [member GameLogic.gravity].
 @export_range(-1000, 1000, 10, "suffix:px/s") var jump_velocity = -880.0
+
+# If positive, the player is either on the ground, or left the ground less than this long ago
+var coyote_timer: float = 0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -62,18 +66,22 @@ func _physics_process(delta):
 	if Global.lives <= 0:
 		return
 
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	# Handle jump
+	if is_on_floor():
+		coyote_timer = COYOTE_TIME_DURATION
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("ui_accept") and coyote_timer > 0:
 		velocity.y = jump_velocity
+		coyote_timer = 0
 
 	# Reduce velocity if the player lets go of the jump key before the apex.
 	# This allows controlling the height of the jump.
 	if Input.is_action_just_released("ui_accept") and velocity.y < 0:
 		velocity.y *= JUMP_CUT_FACTOR
+
+	# Add the gravity.
+	if coyote_timer <= 0:
+		velocity.y += gravity * delta
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -97,10 +105,13 @@ func _physics_process(delta):
 
 	move_and_slide()
 
+	coyote_timer -= delta
+
 
 func reset():
 	position = original_position
 	velocity = Vector2.ZERO
+	coyote_timer = 0
 
 
 func _on_lives_changed():
