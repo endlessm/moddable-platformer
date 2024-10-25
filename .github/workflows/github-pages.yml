@@ -68,7 +68,7 @@ jobs:
   publish:
     name: Publish to GitHub Pages
     needs:
-      - build-web
+      - build
     runs-on: ubuntu-latest
     steps:
       - id: deploy
