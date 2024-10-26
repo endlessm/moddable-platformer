@@ -86,6 +86,22 @@ func _on_gravity_changed(new_gravity):
 	gravity = new_gravity
 
 
+func _jump():
+	velocity.y = jump_velocity
+	coyote_timer = 0
+	jump_buffer_timer = 0
+	if double_jump_armed:
+		double_jump_armed = false
+		_double_jump_particles.emitting = true
+	elif double_jump:
+		double_jump_armed = true
+
+
+func stomp():
+	double_jump_armed = false
+	_jump()
+
+
 func _physics_process(delta):
 	# Don't move if there are no lives left.
 	if Global.lives <= 0:
@@ -100,14 +116,7 @@ func _physics_process(delta):
 		jump_buffer_timer = (jump_buffer + delta)
 
 	if jump_buffer_timer > 0 and (double_jump_armed or coyote_timer > 0):
-		velocity.y = jump_velocity
-		coyote_timer = 0
-		jump_buffer_timer = 0
-		if double_jump_armed:
-			double_jump_armed = false
-			_double_jump_particles.emitting = true
-		elif double_jump:
-			double_jump_armed = true
+		_jump()
 
 	# Reduce velocity if the player lets go of the jump key before the apex.
 	# This allows controlling the height of the jump.
