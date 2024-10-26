@@ -71,7 +71,7 @@ func _on_gravity_changed(new_gravity):
 func _on_hitbox_body_entered(body):
 	if body.name == "Player":
 		if squashable and body.velocity.y > 0 and body.position.y < position.y:
-			body.velocity.y = body.jump_velocity
+			body.stomp()
 			queue_free()
 		elif player_loses_life:
 			Global.lives -= 1
