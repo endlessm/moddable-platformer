@@ -6,7 +6,7 @@
 /.github/**                           export-ignore
 /.github/workflows                   !export-ignore
 /.github/workflows/**                 export-ignore
-/.github/workflows/githuh-pages.yml  !export-ignore
+/.github/workflows/github-pages.yml  !export-ignore
 /asset-template.json.hb               export-ignore
 
 # Substitute project version when publishing
