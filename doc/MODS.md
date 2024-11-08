@@ -135,6 +135,15 @@ on one of these nodes. In the Inspector, you can adjust their behaviour:
 These platforms can be made into moving platforms by using Godot's Animation
 functionality.
 
+### Multiplayer and player controls
+
+Click on the `Player` node. In the inspector, try changing the Player
+dropdown to "Two" or "Both".
+
+Duplicate the `Player` node. Move it next to the existing player. Then
+change the Player to "Two" in the duplicated one. Now the game is
+multiplayer.
+
 ### Player and flag appearance
 
 Click on the `Player` node. In the inspector, observe where it says `Sprite
