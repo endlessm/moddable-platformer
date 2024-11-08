@@ -69,7 +69,7 @@ func _on_gravity_changed(new_gravity):
 
 
 func _on_hitbox_body_entered(body):
-	if body.name == "Player":
+	if body.is_in_group("players"):
 		if squashable and body.velocity.y > 0 and body.position.y < position.y:
 			body.stomp()
 			queue_free()
