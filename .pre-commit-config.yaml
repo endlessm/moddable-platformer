@@ -9,9 +9,7 @@ repos:
   - id: check-yaml
   - id: check-added-large-files
 - repo: https://github.com/Scony/godot-gdscript-toolkit
-  # Use this commit from the master branch until the next stable release with
-  # <https://github.com/Scony/godot-gdscript-toolkit/commit/e3c37fa54fb32ad99b0bceb2f17e7bc1ffd99806>
-  rev: f836958a4487e31e3c5ab35c57c7a2128b7e2303
+  rev: 4.3.3
   hooks:
   - id: gdlint
   - id: gdformat
