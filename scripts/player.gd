@@ -1,5 +1,7 @@
 @tool
+class_name Player
 extends CharacterBody2D
+## A player's character, which can walk, jump, and stomp on enemies.
 
 ## Use this to change the sprite frames of your character.
 @export var sprite_frames: SpriteFrames = _initial_sprite_frames:
