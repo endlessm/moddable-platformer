@@ -23,6 +23,36 @@ Select the `GameLogic` node. From the Inspector, you can adjust the
 Gravity of the world. Decreasing gravity will allow the player to jump
 higher.
 
+### Player
+
+Select the `Player` node. From the Inspector, you can adjust the way the player
+moves in various respects. There are some relatively self-explanatory
+properties:
+
+- **Speed**: How fast the player can move left and right.
+- **Acceleration**: How quickly the player reaches its top left/right speed.
+- **Jump Velocity**: How fast the player moves upwards when jumping. This,
+  together with gravity, controls how high the player can jump.
+- **Double Jump**: If enabled, the player can jump a second time while still in
+  the air. This is quite a common power-up in platform games.
+
+There are also a number of parameters which are commonly used in platform games
+that players may not notice:
+
+- **Jump Cut Factor**: How much to reduce the player's jump when you release
+  the jump key before the top of the jump. Setting this to more than 0% allows
+  the player to control the height of the jump by how long they hold the jump
+  key.
+- **Coyote Time**: How long it takes for the player to start falling after they
+  walk off a ledge. This allows the player to jump if they press the key a
+  moment too late, avoiding frustration. Named after [Wile E.
+  Coyote](https://en.wikipedia.org/wiki/Wile_E._Coyote_and_the_Road_Runner), a
+  cartoon character who often runs off a cliff but does not start falling until
+  he notices he has done so.
+- **Jump Buffer**: How early can the player press jump while still in the air,
+  so that they jump as soon as they land on the floor. This allows the player to
+  jump if they press the key a moment too early, avoiding frustration.
+
 ## Rules
 
 ### Win condition
