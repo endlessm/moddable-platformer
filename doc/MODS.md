@@ -144,6 +144,10 @@ Duplicate the `Player` node. Move it next to the existing player. Then
 change the Player to "Two" in the duplicated one. Now the game is
 multiplayer.
 
+You will notice that the camera is following one of the player characters. So
+try disabling the `Camera2D` node that's a child of the `Player` node. And then
+enable the `MultiplayerCamera` node that's at the bottom of the Scene Dock.
+
 ### Player and flag appearance
 
 Click on the `Player` node. In the inspector, observe where it says `Sprite
