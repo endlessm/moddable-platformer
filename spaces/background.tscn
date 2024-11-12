@@ -16,11 +16,24 @@ fill_to = Vector2(0, 1)
 
 [node name="Background" type="ParallaxBackground"]
 follow_viewport_enabled = true
+scroll_ignore_camera_zoom = true
 script = ExtResource("1_1jh5j")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
 unique_name_in_owner = true
-motion_scale = Vector2(-1, -1)
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(1600, 0)
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2352.0
+offset_right = 5129.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.980392, 0.980392, 0.980392, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
 texture = SubResource("GradientTexture2D_ljotv")
