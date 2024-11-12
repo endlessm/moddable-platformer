@@ -26,7 +26,14 @@ func _ready():
 
 
 func _unhandled_input(event):
-	if event is InputEventKey and %Start.is_visible_in_tree():
+	if (
+		(
+			event is InputEventKey
+			or event is InputEventJoypadButton
+			or event is InputEventJoypadMotion
+		)
+		and %Start.is_visible_in_tree()
+	):
 		%Start.hide()
 
 
