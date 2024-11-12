@@ -6,13 +6,13 @@ extends CharacterBody2D
 const _PLAYER_ACTIONS = {
 	Global.Player.ONE:
 	{
-		"jump": "player_1_up",
+		"jump": "player_1_jump",
 		"left": "player_1_left",
 		"right": "player_1_right",
 	},
 	Global.Player.TWO:
 	{
-		"jump": "player_2_up",
+		"jump": "player_2_jump",
 		"left": "player_2_left",
 		"right": "player_2_right",
 	},
