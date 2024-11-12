@@ -38,3 +38,4 @@ animation = &"all"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -46)
 shape = SubResource("CapsuleShape2D_7x5a4")
+one_way_collision = true
