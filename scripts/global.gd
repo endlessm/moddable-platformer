@@ -9,6 +9,7 @@ signal gravity_changed(gravity: float)
 signal timer_added
 
 enum Endings { WIN, LOSE }
+enum Player { ONE, TWO, BOTH }
 
 ## Timer for finishing the level.
 var timer: Timer

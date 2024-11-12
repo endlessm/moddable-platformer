@@ -83,7 +83,7 @@ func _ready():
 
 
 func _on_area_2d_body_entered(body):
-	if not body.name == "Player":
+	if not body.is_in_group("players"):
 		return
 	if fall_time > 0:
 		fall_timer.start(fall_time)
