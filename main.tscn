@@ -374,3 +374,5 @@ block_script = SubResource("Resource_l6xdl")
 
 [node name="moving_platform2" parent="." groups=["platforms"] instance=ExtResource("20_qt1hg")]
 position = Vector2(3740, -1221)
+
+[editable path="moving_platform2"]
