@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://puw5gjw80pdu"]
+
+[ext_resource type="Texture2D" uid="uid://bcodfdytc2qo" path="res://assets/transparent_acorn-removebg-preview.png" id="1_t1js1"]
+[ext_resource type="Texture2D" uid="uid://f64ufqiwdtg" path="res://assets/acorn-removebg-preview.png" id="2_tsxqc"]
+[ext_resource type="Texture2D" uid="uid://bhqawwwyt31lk" path="res://assets/freehandtree.png" id="3_cq0j5"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k6lx3"]
+load_path = "res://.godot/imported/Warrior_Yellow.png-9967622b6e2cdaf5f9c47a53c11b0cd2.ctex"
+
+[node name="TransparentAcorn-removebg-preview" type="Sprite2D"]
+position = Vector2(684, 646)
+texture = ExtResource("1_t1js1")
+
+[node name="Acorn-removebg-preview" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(475, -36)
+texture = ExtResource("2_tsxqc")
+
+[node name="Freehandtree" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1365, -69)
+texture = ExtResource("3_cq0j5")
+
+[node name="WarriorYellow" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-884, -68)
+scale = Vector2(9.46841, 8.79942)
+texture = SubResource("CompressedTexture2D_k6lx3")
+region_enabled = true
+region_rect = Rect2(1016.48, 622.667, 91.3333, 86.6667)
