@@ -1,0 +1,31 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cu3ru61vg6bx5"]
+
+[ext_resource type="Script" path="res://addons/block_code/code_generation/block_definition.gd" id="1_btxic"]
+
+[resource]
+script = ExtResource("1_btxic")
+name = &"characterbody2d_move"
+target_node_class = "CharacterBody2D"
+description = "Move the character up, down, left, and right with the keyboard using the given keys. The speed of movement can be adjusted separately for x (left and right) and y (up and down)."
+category = "Input"
+type = 2
+variant_type = 0
+display_template = "move with keys {up: STRING} {down: STRING} {left: STRING} {right: STRING} at speed {speed: VECTOR2}"
+code_template = "var dir = Vector2()
+dir.x += float(Input.is_key_pressed(OS.find_keycode_from_string({right})))
+dir.x -= float(Input.is_key_pressed(OS.find_keycode_from_string({left})))
+dir.y += float(Input.is_key_pressed(OS.find_keycode_from_string({down})))
+dir.y -= float(Input.is_key_pressed(OS.find_keycode_from_string({up})))
+dir = dir.normalized()
+velocity = dir*{speed}
+move_and_slide()
+"
+defaults = {
+"down": "S",
+"left": "A",
+"right": "D",
+"speed": Vector2(100, 100),
+"up": "W"
+}
+signal_name = ""
+scope = ""

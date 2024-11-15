@@ -15,6 +15,8 @@
 [ext_resource type="Script" path="res://scripts/multiplayer_camera.gd" id="13_0d2mj"]
 
 [node name="Main" type="Node2D"]
+position = Vector2(3000, -3500)
+rotation = 1.5708
 
 [node name="GameLogic" parent="." instance=ExtResource("3_xbkvd")]
 win_by_collecting_coins = true
@@ -140,6 +142,78 @@ position = Vector2(3008, -320)
 texture = ExtResource("6_kpi5m")
 tint = Color(1, 1, 0, 1)
 
+[node name="Coin22" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2477, -1519)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin23" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2473, -1667)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin24" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2477, -1807)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin25" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2473, -1951)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin26" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2473, -2095)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin27" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2473, -2231)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin28" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2347, -2230)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin29" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2351, -2091)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin30" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2352, -1944)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin31" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2349, -1805)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin32" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2341, -1667)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin33" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2349, -1523)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
 [node name="Coin11" parent="Coins" instance=ExtResource("5_u7hr5")]
 modulate = Color(1, 1, 0, 1)
 position = Vector2(3264, -320)
@@ -197,8 +271,40 @@ width = 2
 position = Vector2(1472, 320)
 width = 2
 
+[node name="Platform10" parent="Platforms" instance=ExtResource("4_gd51l")]
+position = Vector2(733, -331)
+width = 2
+
+[node name="Platform11" parent="Platforms" instance=ExtResource("4_gd51l")]
+position = Vector2(409, -595)
+width = 2
+
+[node name="Platform12" parent="Platforms" instance=ExtResource("4_gd51l")]
+position = Vector2(401, -918)
+width = 2
+
+[node name="Platform13" parent="Platforms" instance=ExtResource("4_gd51l")]
+position = Vector2(397, -1242)
+width = 2
+
+[node name="Platform14" parent="Platforms" instance=ExtResource("4_gd51l")]
+position = Vector2(705, -1494)
+rotation = 1.5708
+width = 2
+
+[node name="Platform15" parent="Platforms" instance=ExtResource("4_gd51l")]
+position = Vector2(701, -1794)
+rotation = 1.5708
+width = 2
+
+[node name="Platform16" parent="Platforms" instance=ExtResource("4_gd51l")]
+position = Vector2(701, -2086)
+rotation = 1.5708
+width = 2
+
 [node name="Player" parent="." instance=ExtResource("2_7yl00")]
-position = Vector2(512, 576)
+position = Vector2(4266, 48.9998)
+rotation = 4.71239
 collision_layer = 1
 collision_mask = 7
 sprite_frames = ExtResource("9_qmofe")
