@@ -1,0 +1,102 @@
+[gd_scene load_steps=18 format=3 uid="uid://c6iqxdcdg4cpd"]
+
+[ext_resource type="Texture2D" uid="uid://3k5crxl0gwg2" path="res://assets/switch.png.png" id="1_gec7q"]
+[ext_resource type="Script" path="res://addons/block_code/block_code_node/block_code.gd" id="2_eobrb"]
+[ext_resource type="Script" path="res://addons/block_code/serialization/block_serialization_tree.gd" id="3_o6qre"]
+[ext_resource type="Script" path="res://addons/block_code/serialization/block_serialization.gd" id="4_4bsvy"]
+[ext_resource type="Script" path="res://addons/block_code/serialization/value_block_serialization.gd" id="5_5eeun"]
+[ext_resource type="Script" path="res://addons/block_code/serialization/block_script_serialization.gd" id="5_6l8wp"]
+[ext_resource type="Script" path="res://addons/block_code/code_generation/variable_definition.gd" id="6_1vv6y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gaw5k"]
+size = Vector2(151, 633)
+
+[sub_resource type="Resource" id="Resource_aqxv4"]
+script = ExtResource("4_4bsvy")
+name = &"ready"
+children = Array[ExtResource("4_4bsvy")]([])
+arguments = {}
+
+[sub_resource type="Resource" id="Resource_4d4jk"]
+script = ExtResource("3_o6qre")
+root = SubResource("Resource_aqxv4")
+canvas_position = Vector2(54, 47)
+
+[sub_resource type="Resource" id="Resource_24jax"]
+script = ExtResource("5_5eeun")
+name = &"area2d_on_entered:something"
+arguments = {}
+
+[sub_resource type="Resource" id="Resource_v6yx2"]
+script = ExtResource("5_5eeun")
+name = &"is_node_in_group"
+arguments = {
+"group": "players",
+"node": SubResource("Resource_24jax")
+}
+
+[sub_resource type="Resource" id="Resource_mhgew"]
+script = ExtResource("4_4bsvy")
+name = &"call_method_group"
+children = Array[ExtResource("4_4bsvy")]([])
+arguments = {
+"group": "animator",
+"method_name": "surprise_me"
+}
+
+[sub_resource type="Resource" id="Resource_k2ml4"]
+script = ExtResource("4_4bsvy")
+name = &"if"
+children = Array[ExtResource("4_4bsvy")]([SubResource("Resource_mhgew")])
+arguments = {
+"condition": SubResource("Resource_v6yx2")
+}
+
+[sub_resource type="Resource" id="Resource_i8v22"]
+script = ExtResource("4_4bsvy")
+name = &"area2d_on_entered"
+children = Array[ExtResource("4_4bsvy")]([SubResource("Resource_k2ml4")])
+arguments = {}
+
+[sub_resource type="Resource" id="Resource_hqmvi"]
+script = ExtResource("3_o6qre")
+root = SubResource("Resource_i8v22")
+canvas_position = Vector2(125, 175)
+
+[sub_resource type="Resource" id="Resource_uhk0x"]
+script = ExtResource("5_6l8wp")
+script_inherits = "Area2D"
+block_serialization_trees = Array[ExtResource("3_o6qre")]([SubResource("Resource_4d4jk"), SubResource("Resource_hqmvi")])
+variables = Array[ExtResource("6_1vv6y")]([])
+generated_script = "extends Area2D
+
+
+func _init():
+	body_entered.connect(_on_body_entered)
+
+func _ready():
+	pass
+
+func _on_body_entered(something: Node2D):
+
+	if ((something).is_in_group('players')):
+		get_tree().call_group('animator', 'surprise_me')
+
+"
+version = 0
+
+[node name="Area2D" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(69, -26.9999)
+scale = Vector2(0.705078, 0.775391)
+texture = ExtResource("1_gec7q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(87.5, -30.5)
+shape = SubResource("RectangleShape2D_gaw5k")
+
+[node name="BlockCode" type="Node" parent="."]
+script = ExtResource("2_eobrb")
+block_script = SubResource("Resource_uhk0x")

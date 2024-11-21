@@ -35,6 +35,8 @@ enabled=PackedStringArray("res://addons/block_code/plugin.cfg")
 [global_group]
 
 players=""
+switch=""
+animator=""
 
 [input]
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://dhcpt1kt8cs0g"]
+[gd_scene load_steps=29 format=3 uid="uid://dhcpt1kt8cs0g"]
 
 [ext_resource type="PackedScene" uid="uid://8st4scqt06l8" path="res://components/player/player.tscn" id="2_7yl00"]
+[ext_resource type="PackedScene" uid="uid://c6iqxdcdg4cpd" path="res://switch.tscn" id="2_pkti7"]
 [ext_resource type="PackedScene" uid="uid://jnrusvm3gric" path="res://spaces/background.tscn" id="2_tb5a2"]
 [ext_resource type="PackedScene" uid="uid://cswheshouik14" path="res://rules_goals/game_logic.tscn" id="3_xbkvd"]
 [ext_resource type="PackedScene" uid="uid://danlrmsfmsros" path="res://spaces/tilemap.tscn" id="3_yfnmv"]
@@ -13,14 +14,185 @@
 [ext_resource type="SpriteFrames" uid="uid://bo581k1esb50n" path="res://components/player/spriteframes-red.tres" id="9_qmofe"]
 [ext_resource type="PackedScene" uid="uid://beuisy5yrw0bq" path="res://components/flag/flag.tscn" id="12_dkbog"]
 [ext_resource type="Script" path="res://scripts/multiplayer_camera.gd" id="13_0d2mj"]
+[ext_resource type="Script" path="res://addons/block_code/block_code_node/block_code.gd" id="15_d8a5s"]
+[ext_resource type="Script" path="res://addons/block_code/serialization/block_serialization_tree.gd" id="16_x6q5a"]
+[ext_resource type="Script" path="res://addons/block_code/serialization/block_serialization.gd" id="17_jgf5q"]
+[ext_resource type="Script" path="res://addons/block_code/serialization/block_script_serialization.gd" id="18_a82pt"]
+[ext_resource type="Script" path="res://addons/block_code/code_generation/variable_definition.gd" id="19_d0hxd"]
+
+[sub_resource type="Animation" id="Animation_f6oj0"]
+resource_name = "turn_the_world"
+length = 25.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.133333, 1, 2, 3, 20.7, 22, 23, 23.9667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.523599, 1.0472, 1.5708, 1.5708, 1.0472, 0.523599, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.133333, 1, 2, 3, 20.7, 22, 23, 23.9667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1000, -1000), Vector2(2000, -2000), Vector2(3000, -3500), Vector2(3000, -3500), Vector2(2000, -2000), Vector2(1000, -1000), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Switch:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.133333, 19.5667, 19.8667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-1.5708, -0.977384, -0.977384, -1.5708]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.166667, 21.0667, 21.8333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -1.5708, -1.5708, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_hkv7j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Switch:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5708]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rqsmy"]
+_data = {
+"RESET": SubResource("Animation_hkv7j"),
+"turn_the_world": SubResource("Animation_f6oj0")
+}
+
+[sub_resource type="Resource" id="Resource_eqk6b"]
+script = ExtResource("17_jgf5q")
+name = &"ready"
+children = Array[ExtResource("17_jgf5q")]([])
+arguments = {}
+
+[sub_resource type="Resource" id="Resource_km54k"]
+script = ExtResource("16_x6q5a")
+root = SubResource("Resource_eqk6b")
+canvas_position = Vector2(54, 47)
+
+[sub_resource type="Resource" id="Resource_c3ppl"]
+script = ExtResource("17_jgf5q")
+name = &"animationplayer_play"
+children = Array[ExtResource("17_jgf5q")]([])
+arguments = {
+"animation": "turn_the_world",
+"direction": "forward"
+}
+
+[sub_resource type="Resource" id="Resource_uf8wr"]
+script = ExtResource("17_jgf5q")
+name = &"define_method"
+children = Array[ExtResource("17_jgf5q")]([SubResource("Resource_c3ppl")])
+arguments = {
+"method_name": &"surprise_me"
+}
+
+[sub_resource type="Resource" id="Resource_cxwsb"]
+script = ExtResource("16_x6q5a")
+root = SubResource("Resource_uf8wr")
+canvas_position = Vector2(150, 200)
+
+[sub_resource type="Resource" id="Resource_ap7c8"]
+script = ExtResource("18_a82pt")
+script_inherits = "AnimationPlayer"
+block_serialization_trees = Array[ExtResource("16_x6q5a")]([SubResource("Resource_km54k"), SubResource("Resource_cxwsb")])
+variables = Array[ExtResource("19_d0hxd")]([])
+generated_script = "extends AnimationPlayer
+
+
+func _ready():
+	pass
+
+func surprise_me():
+	if 'forward' == \"forward\":
+		play('turn_the_world')
+	else:
+		play_backwards('turn_the_world')
+
+
+"
+version = 0
 
 [node name="Main" type="Node2D"]
-position = Vector2(3000, -3500)
-rotation = 1.5708
 
 [node name="GameLogic" parent="." instance=ExtResource("3_xbkvd")]
 win_by_collecting_coins = true
 win_by_reaching_flag = true
+
+[node name="Switch" parent="." groups=["switch"] instance=ExtResource("2_pkti7")]
+position = Vector2(4248, 178)
+rotation = -1.5708
+scale = Vector2(0.4, 0.4)
 
 [node name="Background" parent="." instance=ExtResource("2_tb5a2")]
 tint = Color(0.569993, 0.558956, 0.878091, 1)
@@ -66,19 +238,19 @@ tint = Color(1, 1, 0, 1)
 
 [node name="Coin7" parent="Coins" instance=ExtResource("5_u7hr5")]
 modulate = Color(1, 1, 0, 1)
-position = Vector2(3392, 128)
+position = Vector2(3449, 142)
 texture = ExtResource("6_kpi5m")
 tint = Color(1, 1, 0, 1)
 
 [node name="Coin12" parent="Coins" instance=ExtResource("5_u7hr5")]
 modulate = Color(1, 1, 0, 1)
-position = Vector2(3520, 128)
+position = Vector2(3577, 142)
 texture = ExtResource("6_kpi5m")
 tint = Color(1, 1, 0, 1)
 
 [node name="Coin13" parent="Coins" instance=ExtResource("5_u7hr5")]
 modulate = Color(1, 1, 0, 1)
-position = Vector2(3264, 128)
+position = Vector2(3321, 142)
 texture = ExtResource("6_kpi5m")
 tint = Color(1, 1, 0, 1)
 
@@ -214,6 +386,78 @@ position = Vector2(2349, -1523)
 texture = ExtResource("6_kpi5m")
 tint = Color(1, 1, 0, 1)
 
+[node name="Coin34" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2483, -2417)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin35" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2479, -2565)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin36" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2483, -2705)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin37" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2479, -2849)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin38" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2479, -2993)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin39" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2479, -3129)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin40" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2353, -3128)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin41" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2357, -2989)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin42" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2358, -2842)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin43" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2355, -2703)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin44" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2347, -2565)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin45" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2355, -2421)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
 [node name="Coin11" parent="Coins" instance=ExtResource("5_u7hr5")]
 modulate = Color(1, 1, 0, 1)
 position = Vector2(3264, -320)
@@ -268,7 +512,7 @@ position = Vector2(1216, -64)
 width = 2
 
 [node name="Platform3" parent="Platforms" instance=ExtResource("4_gd51l")]
-position = Vector2(1472, 320)
+position = Vector2(1529, 334)
 width = 2
 
 [node name="Platform10" parent="Platforms" instance=ExtResource("4_gd51l")]
@@ -302,9 +546,23 @@ position = Vector2(701, -2086)
 rotation = 1.5708
 width = 2
 
+[node name="Platform17" parent="Platforms" instance=ExtResource("4_gd51l")]
+position = Vector2(711, -2392)
+rotation = 1.5708
+width = 2
+
+[node name="Platform18" parent="Platforms" instance=ExtResource("4_gd51l")]
+position = Vector2(707, -2692)
+rotation = 1.5708
+width = 2
+
+[node name="Platform19" parent="Platforms" instance=ExtResource("4_gd51l")]
+position = Vector2(707, -2984)
+rotation = 1.5708
+width = 2
+
 [node name="Player" parent="." instance=ExtResource("2_7yl00")]
-position = Vector2(4266, 48.9998)
-rotation = 4.71239
+position = Vector2(510, 569)
 collision_layer = 1
 collision_mask = 7
 sprite_frames = ExtResource("9_qmofe")
@@ -336,3 +594,14 @@ limit_left = 0
 limit_bottom = 1080
 position_smoothing_enabled = true
 script = ExtResource("13_0d2mj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["animator"]]
+libraries = {
+"": SubResource("AnimationLibrary_rqsmy")
+}
+
+[node name="BlockCode" type="Node" parent="AnimationPlayer"]
+script = ExtResource("15_d8a5s")
+block_script = SubResource("Resource_ap7c8")
+
+[editable path="Switch"]
