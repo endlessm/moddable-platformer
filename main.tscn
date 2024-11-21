@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dhcpt1kt8cs0g"]
+[gd_scene load_steps=30 format=3 uid="uid://dhcpt1kt8cs0g"]
 
 [ext_resource type="PackedScene" uid="uid://8st4scqt06l8" path="res://components/player/player.tscn" id="2_7yl00"]
 [ext_resource type="PackedScene" uid="uid://c6iqxdcdg4cpd" path="res://switch.tscn" id="2_pkti7"]
@@ -71,6 +71,30 @@ tracks/3/keys = {
 "update": 0,
 "values": [0.0, -1.5708, -1.5708, 0.0]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3.76667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3.76667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_hkv7j"]
 length = 0.001
@@ -121,6 +145,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rqsmy"]
@@ -182,6 +230,9 @@ func surprise_me():
 
 "
 version = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_l3y8j"]
+font_size = 60
 
 [node name="Main" type="Node2D"]
 
@@ -311,6 +362,60 @@ tint = Color(1, 1, 0, 1)
 [node name="Coin10" parent="Coins" instance=ExtResource("5_u7hr5")]
 modulate = Color(1, 1, 0, 1)
 position = Vector2(3008, -320)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin46" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(4157, -96)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin54" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(4241, -97)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin47" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(3864, -97)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin48" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(3924, -37)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin49" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(3983, -210)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin53" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(3980, 20)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin50" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(3972, -94)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin52" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(4065, -97)
+texture = ExtResource("6_kpi5m")
+tint = Color(1, 1, 0, 1)
+
+[node name="Coin51" parent="Coins" instance=ExtResource("5_u7hr5")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(3927, -157)
 texture = ExtResource("6_kpi5m")
 tint = Color(1, 1, 0, 1)
 
@@ -562,7 +667,7 @@ rotation = 1.5708
 width = 2
 
 [node name="Player" parent="." instance=ExtResource("2_7yl00")]
-position = Vector2(510, 569)
+position = Vector2(463, 599)
 collision_layer = 1
 collision_mask = 7
 sprite_frames = ExtResource("9_qmofe")
@@ -603,5 +708,27 @@ libraries = {
 [node name="BlockCode" type="Node" parent="AnimationPlayer"]
 script = ExtResource("15_d8a5s")
 block_script = SubResource("Resource_ap7c8")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 3770.0
+offset_top = 405.0
+offset_right = 4078.0
+offset_bottom = 508.0
+rotation = -1.5708
+text = "Climb fast!"
+label_settings = SubResource("LabelSettings_l3y8j")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+offset_left = 2369.0
+offset_top = -119.0
+offset_right = 2677.0
+offset_bottom = -16.0
+rotation = -2.11359
+text = "This way?"
+label_settings = SubResource("LabelSettings_l3y8j")
+horizontal_alignment = 1
 
 [editable path="Switch"]
