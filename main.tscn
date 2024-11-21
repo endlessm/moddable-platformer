@@ -95,6 +95,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Background:tint")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.2, 17.0333, 17.2, 17.3667, 17.5333, 17.7, 17.8667, 18, 18.1667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.569993, 0.558956, 0.878091, 1), Color(0.855629, 0.456545, 0.582872, 1), Color(0.855629, 0.456545, 0.582872, 1), Color(0.243347, 0.621683, 0.955774, 1), Color(0.940593, 0.310926, 0.756332, 1), Color(0.383297, 0.5903, 0.980091, 1), Color(0.9554, 0.307318, 0.71152, 1), Color(0.446793, 0.572921, 0.982672, 1), Color(0.966969, 0.267293, 0.754444, 1), Color(0.43984, 0.573711, 0.986868, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_hkv7j"]
 length = 0.001
@@ -169,6 +181,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Background:tint")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.569993, 0.558956, 0.878091, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rqsmy"]
