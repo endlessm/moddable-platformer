@@ -1,7 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dk0xon0k7ga23"]
+[gd_scene load_steps=26 format=3 uid="uid://dk0xon0k7ga23"]
 
 [ext_resource type="Texture2D" uid="uid://dwhi5vmkbnyk4" path="res://assets/enemy.png" id="1_57cf6"]
 [ext_resource type="Script" path="res://components/enemy/enemy.gd" id="1_urf0o"]
+[ext_resource type="Script" path="res://addons/block_code/block_code_node/block_code.gd" id="3_8rxqa"]
+[ext_resource type="Script" path="res://addons/block_code/serialization/block_serialization_tree.gd" id="4_gb5wh"]
+[ext_resource type="Script" path="res://addons/block_code/serialization/block_serialization.gd" id="5_4ncwm"]
+[ext_resource type="Script" path="res://addons/block_code/serialization/value_block_serialization.gd" id="6_mqf0t"]
+[ext_resource type="Script" path="res://addons/block_code/serialization/block_script_serialization.gd" id="7_1py5q"]
+[ext_resource type="Script" path="res://addons/block_code/code_generation/variable_definition.gd" id="8_87fpr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5r7qd"]
 atlas = ExtResource("1_57cf6")
@@ -50,6 +56,84 @@ size = Vector2(48, 78)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cepcq"]
 size = Vector2(82, 83)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_htw7m"]
+radius = 55.0
+height = 110.0
+
+[sub_resource type="Resource" id="Resource_ana05"]
+script = ExtResource("5_4ncwm")
+name = &"ready"
+children = Array[ExtResource("5_4ncwm")]([])
+arguments = {}
+
+[sub_resource type="Resource" id="Resource_pyq3r"]
+script = ExtResource("4_gb5wh")
+root = SubResource("Resource_ana05")
+canvas_position = Vector2(54, 47)
+
+[sub_resource type="Resource" id="Resource_tuc57"]
+script = ExtResource("6_mqf0t")
+name = &"area2d_on_entered:something"
+arguments = {}
+
+[sub_resource type="Resource" id="Resource_ufckg"]
+script = ExtResource("6_mqf0t")
+name = &"is_node_in_group"
+arguments = {
+"group": "players",
+"node": SubResource("Resource_tuc57")
+}
+
+[sub_resource type="Resource" id="Resource_k3lkv"]
+script = ExtResource("5_4ncwm")
+name = &"call_method_group"
+children = Array[ExtResource("5_4ncwm")]([])
+arguments = {
+"group": "animator",
+"method_name": ""
+}
+
+[sub_resource type="Resource" id="Resource_kwf5i"]
+script = ExtResource("5_4ncwm")
+name = &"if"
+children = Array[ExtResource("5_4ncwm")]([SubResource("Resource_k3lkv")])
+arguments = {
+"condition": SubResource("Resource_ufckg")
+}
+
+[sub_resource type="Resource" id="Resource_o4vo8"]
+script = ExtResource("5_4ncwm")
+name = &"area2d_on_entered"
+children = Array[ExtResource("5_4ncwm")]([SubResource("Resource_kwf5i")])
+arguments = {}
+
+[sub_resource type="Resource" id="Resource_tr3jk"]
+script = ExtResource("4_gb5wh")
+root = SubResource("Resource_o4vo8")
+canvas_position = Vector2(175, 175)
+
+[sub_resource type="Resource" id="Resource_f41ry"]
+script = ExtResource("7_1py5q")
+script_inherits = "Area2D"
+block_serialization_trees = Array[ExtResource("4_gb5wh")]([SubResource("Resource_pyq3r"), SubResource("Resource_tr3jk")])
+variables = Array[ExtResource("8_87fpr")]([])
+generated_script = "extends Area2D
+
+
+func _init():
+	body_entered.connect(_on_body_entered)
+
+func _ready():
+	pass
+
+func _on_body_entered(something: Node2D):
+
+	if ((something).is_in_group('players')):
+		get_tree().call_group('animator', '')
+
+"
+version = 0
+
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 4
@@ -84,5 +168,15 @@ position = Vector2(0, -106)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, 58.5)
 shape = SubResource("RectangleShape2D_cepcq")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, -44)
+shape = SubResource("CapsuleShape2D_htw7m")
+
+[node name="BlockCode" type="Node" parent="Area2D"]
+script = ExtResource("3_8rxqa")
+block_script = SubResource("Resource_f41ry")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

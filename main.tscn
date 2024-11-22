@@ -20,94 +20,6 @@
 [ext_resource type="Script" path="res://addons/block_code/serialization/block_script_serialization.gd" id="18_a82pt"]
 [ext_resource type="Script" path="res://addons/block_code/code_generation/variable_definition.gd" id="19_d0hxd"]
 
-[sub_resource type="Animation" id="Animation_f6oj0"]
-resource_name = "turn_the_world"
-length = 25.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.133333, 1, 2, 3, 20.7, 22, 23, 23.9667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.523599, 1.0472, 1.5708, 1.5708, 1.0472, 0.523599, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.133333, 1, 2, 3, 20.7, 22, 23, 23.9667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(1000, -1000), Vector2(2000, -2000), Vector2(3000, -3500), Vector2(3000, -3500), Vector2(2000, -2000), Vector2(1000, -1000), Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Switch:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.133333, 19.5667, 19.8667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [-1.5708, -0.977384, -0.977384, -1.5708]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Player:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.166667, 21.0667, 21.8333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -1.5708, -1.5708, 0.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Label:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 3.76667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Label2:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 3.76667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Background:tint")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.2, 17.0333, 17.2, 17.3667, 17.5333, 17.7, 17.8667, 18, 18.1667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.569993, 0.558956, 0.878091, 1), Color(0.855629, 0.456545, 0.582872, 1), Color(0.855629, 0.456545, 0.582872, 1), Color(0.243347, 0.621683, 0.955774, 1), Color(0.940593, 0.310926, 0.756332, 1), Color(0.383297, 0.5903, 0.980091, 1), Color(0.9554, 0.307318, 0.71152, 1), Color(0.446793, 0.572921, 0.982672, 1), Color(0.966969, 0.267293, 0.754444, 1), Color(0.43984, 0.573711, 0.986868, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_hkv7j"]
 length = 0.001
 tracks/0/type = "value"
@@ -193,6 +105,118 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0.569993, 0.558956, 0.878091, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Player/Camera2D:limit_bottom")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1080]
+}
+
+[sub_resource type="Animation" id="Animation_f6oj0"]
+resource_name = "turn_the_world"
+length = 25.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.133333, 1, 2, 3, 20.7, 22, 23, 23.9667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.523599, 1.0472, 1.5708, 1.5708, 1.0472, 0.523599, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.133333, 0.566667, 1, 2, 3, 20.7, 22, 23, 23.9667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(500, -700), Vector2(1000, -1000), Vector2(2000, -2000), Vector2(3000, -3500), Vector2(3000, -3500), Vector2(2000, -2000), Vector2(1000, -1000), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Switch:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.133333, 19.5667, 19.8667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-1.5708, -0.977384, -0.977384, -1.5708]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.166667, 21.0667, 21.8333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -1.5708, -1.5708, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3.76667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3.76667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Background:tint")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.2, 17.0333, 17.2, 17.3667, 17.5333, 17.7, 17.8667, 18, 18.1667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.569993, 0.558956, 0.878091, 1), Color(0.855629, 0.456545, 0.582872, 1), Color(0.855629, 0.456545, 0.582872, 1), Color(0.243347, 0.621683, 0.955774, 1), Color(0.940593, 0.310926, 0.756332, 1), Color(0.383297, 0.5903, 0.980091, 1), Color(0.9554, 0.307318, 0.71152, 1), Color(0.446793, 0.572921, 0.982672, 1), Color(0.966969, 0.267293, 0.754444, 1), Color(0.43984, 0.573711, 0.986868, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Player/Camera2D:limit_bottom")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.7, 2.66667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1080, 2200, 2200]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rqsmy"]
@@ -691,7 +715,7 @@ rotation = 1.5708
 width = 2
 
 [node name="Player" parent="." instance=ExtResource("2_7yl00")]
-position = Vector2(463, 599)
+position = Vector2(4031, 335)
 collision_layer = 1
 collision_mask = 7
 sprite_frames = ExtResource("9_qmofe")
