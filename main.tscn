@@ -715,7 +715,7 @@ rotation = 1.5708
 width = 2
 
 [node name="Player" parent="." instance=ExtResource("2_7yl00")]
-position = Vector2(4031, 335)
+position = Vector2(526, 595)
 collision_layer = 1
 collision_mask = 7
 sprite_frames = ExtResource("9_qmofe")
@@ -732,7 +732,7 @@ position_smoothing_enabled = true
 position = Vector2(1600, 704)
 
 [node name="Enemy2" parent="." instance=ExtResource("9_l6smt")]
-position = Vector2(1920, 576)
+position = Vector2(451, -142)
 
 [node name="Enemy3" parent="." instance=ExtResource("9_l6smt")]
 position = Vector2(4096, 960)
