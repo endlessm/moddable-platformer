@@ -31,6 +31,7 @@ func _unhandled_input(event):
 			event is InputEventKey
 			or event is InputEventJoypadButton
 			or event is InputEventJoypadMotion
+			or event is InputEventScreenTouch
 		)
 		and %Start.is_visible_in_tree()
 	):

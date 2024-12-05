@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://jt80gv02u4f2"]
+[gd_scene load_steps=6 format=3 uid="uid://jt80gv02u4f2"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_8msyy"]
 [ext_resource type="Texture2D" uid="uid://d3um1i1lgu153" path="res://assets/heart.png" id="2_yyptq"]
+[ext_resource type="Texture2D" uid="uid://c6ic03u2yvnk6" path="res://assets/controls/flatLightLeft.png" id="3_cxgb6"]
+[ext_resource type="Texture2D" uid="uid://dsght3iwomray" path="res://assets/controls/flatLightRight.png" id="4_x1c4s"]
+[ext_resource type="Texture2D" uid="uid://crocudarwwiec" path="res://assets/controls/flatLightA.png" id="5_p3p2e"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_8msyy")
@@ -98,3 +101,30 @@ offset_bottom = 284.0
 texture = ExtResource("2_yyptq")
 expand_mode = 1
 stretch_mode = 1
+
+[node name="MovePlayerLeft" type="TouchScreenButton" parent="."]
+texture_filter = 1
+position = Vector2(80, 845)
+scale = Vector2(2.3, 2.3)
+texture_normal = ExtResource("3_cxgb6")
+passby_press = true
+action = "player_1_left"
+visibility_mode = 1
+
+[node name="MovePlayerRight" type="TouchScreenButton" parent="."]
+texture_filter = 1
+position = Vector2(400, 845)
+scale = Vector2(2.3, 2.3)
+texture_normal = ExtResource("4_x1c4s")
+passby_press = true
+action = "player_1_right"
+visibility_mode = 1
+
+[node name="Jump" type="TouchScreenButton" parent="."]
+texture_filter = 1
+position = Vector2(1695, 845)
+scale = Vector2(2.3, 2.3)
+texture_normal = ExtResource("5_p3p2e")
+passby_press = true
+action = "player_1_jump"
+visibility_mode = 1
