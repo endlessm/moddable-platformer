@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://jt80gv02u4f2"]
+[gd_scene load_steps=9 format=3 uid="uid://jt80gv02u4f2"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_8msyy"]
 [ext_resource type="Texture2D" uid="uid://d3um1i1lgu153" path="res://assets/heart.png" id="2_yyptq"]
 [ext_resource type="Texture2D" uid="uid://c6ic03u2yvnk6" path="res://assets/controls/flatLightLeft.png" id="3_cxgb6"]
+[ext_resource type="Texture2D" uid="uid://svp2vgo37htu" path="res://assets/controls/flatDarkLeft.png" id="4_w2trk"]
 [ext_resource type="Texture2D" uid="uid://dsght3iwomray" path="res://assets/controls/flatLightRight.png" id="4_x1c4s"]
 [ext_resource type="Texture2D" uid="uid://crocudarwwiec" path="res://assets/controls/flatLightA.png" id="5_p3p2e"]
+[ext_resource type="Texture2D" uid="uid://cwxk6km6rqwl3" path="res://assets/controls/flatDarkRight.png" id="6_u38dk"]
+[ext_resource type="Texture2D" uid="uid://vujn5y4v732w" path="res://assets/controls/flatDarkA.png" id="8_me7no"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_8msyy")
@@ -107,6 +110,7 @@ texture_filter = 1
 position = Vector2(80, 845)
 scale = Vector2(2.3, 2.3)
 texture_normal = ExtResource("3_cxgb6")
+texture_pressed = ExtResource("4_w2trk")
 passby_press = true
 action = "player_1_left"
 visibility_mode = 1
@@ -116,6 +120,7 @@ texture_filter = 1
 position = Vector2(400, 845)
 scale = Vector2(2.3, 2.3)
 texture_normal = ExtResource("4_x1c4s")
+texture_pressed = ExtResource("6_u38dk")
 passby_press = true
 action = "player_1_right"
 visibility_mode = 1
@@ -125,6 +130,7 @@ texture_filter = 1
 position = Vector2(1695, 845)
 scale = Vector2(2.3, 2.3)
 texture_normal = ExtResource("5_p3p2e")
+texture_pressed = ExtResource("8_me7no")
 passby_press = true
 action = "player_1_jump"
 visibility_mode = 1
