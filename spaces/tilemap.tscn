@@ -2,6 +2,6 @@
 
 [ext_resource type="TileSet" uid="uid://bmkax0b814rmy" path="res://spaces/tileset-a.tres" id="1_iow8m"]
 
-[node name="TileMap" type="TileMap"]
+[node name="TileMapLayer" type="TileMapLayer"]
+use_parent_material = true
 tile_set = ExtResource("1_iow8m")
-format = 2
