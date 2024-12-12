@@ -24,6 +24,17 @@ func _ready():
 	Global.game_ended.connect(_on_game_ended)
 	Global.timer_added.connect(_on_timer_added)
 
+	Input.joy_connection_changed.connect(_on_joy_connection_changed)
+	# TODO: hide entirely if touch controls are visible?
+
+
+func _on_joy_connection_changed(index: int, connected: bool):
+	match index:
+		0:
+			%PlayerOneJoypad.visible = connected
+		1:
+			%PlayerTwoJoypad.visible = connected
+
 
 func _unhandled_input(event):
 	if (
