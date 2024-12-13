@@ -1,40 +1,160 @@
-[gd_scene load_steps=9 format=3 uid="uid://jt80gv02u4f2"]
+[gd_scene load_steps=20 format=3 uid="uid://jt80gv02u4f2"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_8msyy"]
+[ext_resource type="Texture2D" uid="uid://bwt5tfdwi6444" path="res://assets/input-prompts/keyboard_arrow_left.svg" id="2_btdwd"]
 [ext_resource type="Texture2D" uid="uid://d3um1i1lgu153" path="res://assets/heart.png" id="2_yyptq"]
 [ext_resource type="Texture2D" uid="uid://c6ic03u2yvnk6" path="res://assets/controls/flatLightLeft.png" id="3_cxgb6"]
+[ext_resource type="Texture2D" uid="uid://bvblole4tllwp" path="res://assets/input-prompts/keyboard_arrow_up.svg" id="3_dm1pp"]
+[ext_resource type="Texture2D" uid="uid://ejrlpu5caxit" path="res://assets/input-prompts/keyboard_arrow_right.svg" id="4_pk5l0"]
 [ext_resource type="Texture2D" uid="uid://svp2vgo37htu" path="res://assets/controls/flatDarkLeft.png" id="4_w2trk"]
 [ext_resource type="Texture2D" uid="uid://dsght3iwomray" path="res://assets/controls/flatLightRight.png" id="4_x1c4s"]
+[ext_resource type="Texture2D" uid="uid://c0jvv7knv0gkx" path="res://assets/input-prompts/keyboard_a.svg" id="5_46xsx"]
+[ext_resource type="Texture2D" uid="uid://cw862nhkb5yck" path="res://assets/input-prompts/steamdeck_dpad_left.svg" id="5_dwb6l"]
 [ext_resource type="Texture2D" uid="uid://crocudarwwiec" path="res://assets/controls/flatLightA.png" id="5_p3p2e"]
+[ext_resource type="Texture2D" uid="uid://kthlw3efc7k1" path="res://assets/input-prompts/steamdeck_dpad_right.svg" id="6_gl61p"]
+[ext_resource type="Texture2D" uid="uid://brdwgpvrgx8dh" path="res://assets/input-prompts/keyboard_w.svg" id="6_p4rii"]
 [ext_resource type="Texture2D" uid="uid://cwxk6km6rqwl3" path="res://assets/controls/flatDarkRight.png" id="6_u38dk"]
+[ext_resource type="Texture2D" uid="uid://cunoxrlkbl8f1" path="res://assets/input-prompts/steamdeck_button_a.svg" id="7_cae44"]
+[ext_resource type="Texture2D" uid="uid://djskjyoqjltro" path="res://assets/input-prompts/keyboard_d.svg" id="7_idqt6"]
 [ext_resource type="Texture2D" uid="uid://vujn5y4v732w" path="res://assets/controls/flatDarkA.png" id="8_me7no"]
+
+[sub_resource type="Theme" id="Theme_0yvta"]
+default_font_size = 64
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b8smf"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_8msyy")
 
-[node name="Start" type="Label" parent="."]
+[node name="Start" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
-top_level = true
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -367.5
-offset_top = -487.0
-offset_right = 367.5
-offset_bottom = 56.0
+offset_left = -331.5
+offset_right = 331.5
+offset_bottom = 420.0
 grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 64
-text = "Controls
-Player One: Arrow Keys
-Player Two: WASD
+theme = SubResource("Theme_0yvta")
+theme_override_constants/separation = 32
 
-Press any key
-to Start"
+[node name="Label" type="Label" parent="Start"]
+layout_mode = 2
+text = "Controls"
 horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Start"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 24
+columns = 2
+
+[node name="PlayerOneCaption" type="Label" parent="Start/GridContainer"]
+layout_mode = 2
+text = "Player One:"
+
+[node name="PlayerOne" type="TabContainer" parent="Start/GridContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_b8smf")
+current_tab = 1
+tabs_visible = false
+
+[node name="PlayerOneJoypad" type="HBoxContainer" parent="Start/GridContainer/PlayerOne"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Left" type="TextureRect" parent="Start/GridContainer/PlayerOne/PlayerOneJoypad"]
+layout_mode = 2
+texture = ExtResource("5_dwb6l")
+stretch_mode = 5
+
+[node name="A" type="TextureRect" parent="Start/GridContainer/PlayerOne/PlayerOneJoypad"]
+layout_mode = 2
+texture = ExtResource("7_cae44")
+stretch_mode = 5
+
+[node name="Right" type="TextureRect" parent="Start/GridContainer/PlayerOne/PlayerOneJoypad"]
+layout_mode = 2
+texture = ExtResource("6_gl61p")
+stretch_mode = 5
+
+[node name="PlayerOneKeyboard" type="HBoxContainer" parent="Start/GridContainer/PlayerOne"]
+unique_name_in_owner = true
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Left" type="TextureRect" parent="Start/GridContainer/PlayerOne/PlayerOneKeyboard"]
+layout_mode = 2
+texture = ExtResource("2_btdwd")
+stretch_mode = 5
+
+[node name="Up" type="TextureRect" parent="Start/GridContainer/PlayerOne/PlayerOneKeyboard"]
+layout_mode = 2
+texture = ExtResource("3_dm1pp")
+stretch_mode = 5
+
+[node name="Right" type="TextureRect" parent="Start/GridContainer/PlayerOne/PlayerOneKeyboard"]
+layout_mode = 2
+texture = ExtResource("4_pk5l0")
+stretch_mode = 5
+
+[node name="PlayerTwoCaption" type="Label" parent="Start/GridContainer"]
+layout_mode = 2
+text = "Player Two:"
+
+[node name="PlayerTwo" type="TabContainer" parent="Start/GridContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_b8smf")
+current_tab = 1
+tabs_visible = false
+
+[node name="PlayerTwoJoypad" type="HBoxContainer" parent="Start/GridContainer/PlayerTwo"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Left" type="TextureRect" parent="Start/GridContainer/PlayerTwo/PlayerTwoJoypad"]
+layout_mode = 2
+texture = ExtResource("5_dwb6l")
+stretch_mode = 5
+
+[node name="A" type="TextureRect" parent="Start/GridContainer/PlayerTwo/PlayerTwoJoypad"]
+layout_mode = 2
+texture = ExtResource("7_cae44")
+stretch_mode = 5
+
+[node name="Right" type="TextureRect" parent="Start/GridContainer/PlayerTwo/PlayerTwoJoypad"]
+layout_mode = 2
+texture = ExtResource("6_gl61p")
+stretch_mode = 5
+
+[node name="PlayerTwoKeyboard" type="HBoxContainer" parent="Start/GridContainer/PlayerTwo"]
+unique_name_in_owner = true
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Left" type="TextureRect" parent="Start/GridContainer/PlayerTwo/PlayerTwoKeyboard"]
+layout_mode = 2
+texture = ExtResource("5_46xsx")
+stretch_mode = 5
+
+[node name="Up" type="TextureRect" parent="Start/GridContainer/PlayerTwo/PlayerTwoKeyboard"]
+layout_mode = 2
+texture = ExtResource("6_p4rii")
+stretch_mode = 5
+
+[node name="Right" type="TextureRect" parent="Start/GridContainer/PlayerTwo/PlayerTwoKeyboard"]
+layout_mode = 2
+texture = ExtResource("7_idqt6")
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="Start"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Press any key to start"
 
 [node name="WinEnding" type="Label" parent="."]
 unique_name_in_owner = true
