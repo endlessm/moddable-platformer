@@ -25,7 +25,8 @@ func _ready():
 	Global.timer_added.connect(_on_timer_added)
 
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
-	# TODO: hide entirely if touch controls are visible?
+	if DisplayServer.is_touchscreen_available():
+		%Start.hide()
 
 
 func _on_joy_connection_changed(index: int, connected: bool):
