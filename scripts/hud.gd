@@ -6,12 +6,34 @@ extends CanvasLayer
 	Global.Endings.LOSE: %LoseEnding,
 }
 
+func _on_node_added(new_node):
+	if new_node.name == "Player2":
+		update_hud_for_player_two()
+
+func _on_node_removed(removed_node):
+	if removed_node.name == "Player2":
+		%PlayerTwo.visible = false
+		%PlayerTwoCaption.visible = false
+	
+		
+func update_hud_for_player_two():
+	%PlayerTwo.visible = true
+	%PlayerTwoCaption.visible = true
 
 func _process(_delta):
 	%TimeLeft.text = "%.1f" % Global.timer.time_left
 
-
 func _ready():
+	%PlayerTwo.visible = false
+	%PlayerTwoCaption.visible = false
+	
+		# Get the main scene's root node
+	var main_scene = $".."
+
+	# Connect signals to the main scene's root node
+	main_scene.connect("child_added", Callable(self, "_on_node_added"))
+	main_scene.connect("child_removed", Callable(self, "_on_node_removed"))
+	
 	set_process(false)
 	set_physics_process(false)
 

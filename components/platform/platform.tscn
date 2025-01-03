@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://components/platform/platform.gd" id="1_dpc6h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4vtk"]
-size = Vector2(384, 40)
+size = Vector2(256, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o2vn2"]
-size = Vector2(384, 128)
+size = Vector2(256, 128)
 
 [sub_resource type="Animation" id="Animation_6232f"]
 resource_name = "shake"
