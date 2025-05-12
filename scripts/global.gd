@@ -5,7 +5,11 @@ signal coin_collected
 signal flag_raised(flag: Flag)
 signal lives_changed
 signal game_ended(ending: Endings)
+
+## Emitted by [GameLogic] when the world's gravitational force is changed.
+@warning_ignore("unused_signal")
 signal gravity_changed(gravity: float)
+
 signal timer_added
 
 enum Endings { WIN, LOSE }
