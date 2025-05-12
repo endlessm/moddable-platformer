@@ -16,7 +16,7 @@ permissions:
   id-token: write
 
 env:
-  GODOT_VERSION: 4.3
+  GODOT_VERSION: 4.4
 
 jobs:
   check:
