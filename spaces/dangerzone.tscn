@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dthyncc3spfks"]
 
-[ext_resource type="Script" path="res://scripts/dangerzone.gd" id="1_gg0kk"]
+[ext_resource type="Script" uid="uid://d000x4b6xlry" path="res://scripts/dangerzone.gd" id="1_gg0kk"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rpdqf"]
 
