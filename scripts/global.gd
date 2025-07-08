@@ -5,6 +5,7 @@ signal coin_collected
 signal flag_raised(flag: Flag)
 signal lives_changed
 signal game_ended(ending: Endings)
+signal game_started
 
 ## Emitted by [GameLogic] when the world's gravitational force is changed.
 @warning_ignore("unused_signal")
@@ -41,6 +42,7 @@ func setup_timer(time_limit: int):
 	timer.timeout.connect(_on_timer_timeout)
 	add_child(timer)
 	timer.start(time_limit)
+	timer.paused = true
 	timer_added.emit()
 
 
@@ -55,3 +57,21 @@ func _set_lives(value):
 	lives_changed.emit()
 	if lives <= 0:
 		game_ended.emit(Global.Endings.LOSE)
+
+
+func _ready():
+	# Connect signals to handle game events.
+	game_ended.connect(_on_game_ended)
+	game_started.connect(_on_game_start)
+
+
+func _on_game_ended(_ending: Endings):
+	# Pause the timer if it is running.
+	if timer and not timer.is_stopped():
+		timer.paused = true
+
+
+func _on_game_start():
+	# Start the timer if it has been set up.
+	if timer != null:
+		timer.paused = false
