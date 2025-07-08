@@ -1,0 +1,16 @@
+# CODEOWNERS
+#
+# Each line is a file pattern followed by one or more users or teams. Order is
+# important; the last matching pattern takes the most precedence. When someone
+# opens a pull request that only modifies files matching a pattern farther down,
+# only the last-matching owner(s) and not the global owner(s) will be requested
+# for a review.
+#
+# Prefer listing teams instead of individual users whenever possible for easier
+# access management.
+#
+# This is a living document mapping expertise to the codebase; it can and should
+# be updated over time! See: https://opensauced.pizza/blog/shared-ownership-culture
+
+# Global (will be requested for review if no more specific match)
+* @endlessm/games
