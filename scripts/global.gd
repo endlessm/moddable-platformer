@@ -16,9 +16,6 @@ signal timer_added
 enum Endings { WIN, LOSE }
 enum Player { ONE, TWO, BOTH }
 
-## Global game state manager.
-var is_ended: bool = false
-
 ## Timer for finishing the level.
 var timer: Timer
 
@@ -40,11 +37,13 @@ func raise_flag(flag: Flag):
 
 
 func setup_timer(time_limit: int):
-	timer = Timer.new()
+	timer = Timer.new() 
 	timer.one_shot = true
 	timer.timeout.connect(_on_timer_timeout)
 	add_child(timer)
-	timer.wait_time = time_limit
+	timer.start(time_limit)
+	timer.paused = true
+	timer_added.emit()
 
 
 func _on_timer_timeout():
@@ -67,15 +66,12 @@ func _ready():
 
 
 func _on_game_ended(_ending: Endings):
-	is_ended = true
-	# Stop the timer if it is running.
+	# Pause the timer if it is running.
 	if timer and not timer.is_stopped():
-		timer.stop()
+		timer.paused = true
 
 
 func _on_game_start():
-	is_ended = false
 	# Start the timer if it has been set up.
 	if timer != null:
-		timer.start()
-		timer_added.emit()
+		timer.paused = false
