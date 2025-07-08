@@ -1,116 +1,27 @@
 name: "Publish to GitHub Pages"
 on:
+  delete:
   workflow_dispatch:
-  release:
+  workflow_run:
+    workflows:
+      - "Build and Export Game"
     types:
-      - published
+      - completed
 
-# Cancel any ongoing previous run if the job is re-triggered
 concurrency:
   group: ${{ github.workflow }}
-  cancel-in-progress: true
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
-env:
-  GODOT_VERSION: 4.4
-
 jobs:
-  check:
-    name: Check if GitHub Pages is enabled
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check
-        id: check
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          if gh api "repos/${{ github.repository }}/pages" | jq --exit-status '.build_type == "workflow"'
-          then
-              echo "enabled=true" >> "$GITHUB_OUTPUT"
-          else
-              echo "# Not published to GitHub Pages" >> "$GITHUB_STEP_SUMMARY"
-              echo "" >> "$GITHUB_STEP_SUMMARY"
-              echo -n "Check that Pages is enabled, with the source set to GitHub Actions, in the " >> "$GITHUB_STEP_SUMMARY"
-              echo "[repository settings](https://github.com/${{ github.repository }}/settings/pages)." >> "$GITHUB_STEP_SUMMARY"
-          fi
-    outputs:
-      enabled: ${{ steps.check.outputs.enabled }}
-
-  build:
-    name: Build for web
-    needs:
-      - check
-    if: ${{ needs.check.outputs.enabled }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          lfs: true
-
-      - name: Cache Godot Engine downloads
-        id: cache-godot
-        uses: actions/cache@v4
-        with:
-          path: |
-            build/godot
-            build/._sc_
-            build/editor_data/export_templates/${{ env.GODOT_VERSION }}.stable
-          key: godot-${{ env.GODOT_VERSION }}
-
-      - name: Download Godot Engine from GitHub release
-        id: download
-        if: steps.cache-godot.outputs.cache-hit != 'true'
-        run: |
-          mkdir -p build && cd build
-
-          # Download Godot Engine itself
-          wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip && \
-          unzip Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip && \
-          mv Godot_v${GODOT_VERSION}-stable_linux.x86_64 godot
-
-          # Download export templates
-          mkdir -p editor_data/export_templates
-          wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_export_templates.tpz && \
-          unzip Godot_v${GODOT_VERSION}-stable_export_templates.tpz && \
-          mv templates editor_data/export_templates/${GODOT_VERSION}.stable
-
-          # Tell Godot Engine to run in "self-contained" mode so it looks for
-          # templates here instead of in ~/.local/share/godot/
-          touch ._sc_
-
-      - name: Web Build
-        run: |
-          mkdir -v -p build/web && cd build
-
-          # Note that the export path can be confusing; it's relative to the
-          # Godot project path, NOT necessarily the current directory or Godot
-          # binary location
-          ./godot --headless --verbose --path ../ --export-release "Web" ./build/web/index.html
-
-      - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          name: web
-          path: build/web
-
   publish:
-    name: Publish to GitHub Pages
-    needs:
-      - build
+    name: Publish all branches to GitHub Pages
     runs-on: ubuntu-latest
     steps:
-      - id: deploy
-        name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+      - uses: endlessm/amalgamate-pages@v1
         with:
+          workflow_name: "Build and Export Game"
           artifact_name: web
-
-      - name: Show URL in summary
-        if: ${{ steps.deploy.outcome == 'success' }}
-        run: |
-          echo "Game published to: <${{ steps.deploy.outputs.page_url }}>" >> "$GITHUB_STEP_SUMMARY"
