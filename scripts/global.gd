@@ -5,6 +5,7 @@ signal coin_collected
 signal flag_raised(flag: Flag)
 signal lives_changed
 signal game_ended(ending: Endings)
+signal game_start
 
 ## Emitted by [GameLogic] when the world's gravitational force is changed.
 @warning_ignore("unused_signal")
@@ -15,8 +16,12 @@ signal timer_added
 enum Endings { WIN, LOSE }
 enum Player { ONE, TWO, BOTH }
 
+## Global game state manager.
+var is_ended: bool = false
+
 ## Timer for finishing the level.
 var timer: Timer
+var timer_time_limit: int = 0
 
 ## Stores the collected coins.
 var coins: int = 0
@@ -40,11 +45,15 @@ func setup_timer(time_limit: int):
 	timer.one_shot = true
 	timer.timeout.connect(_on_timer_timeout)
 	add_child(timer)
-	timer.start(time_limit)
-	timer_added.emit()
+	timer_time_limit = time_limit
+	#timer.start(time_limit)
+	#timer_added.emit()
 
 
 func _on_timer_timeout():
+	#If the game is already ended, do nothing.
+	if is_ended:
+		return
 	game_ended.emit(Endings.LOSE)
 
 
@@ -55,3 +64,24 @@ func _set_lives(value):
 	lives_changed.emit()
 	if lives <= 0:
 		game_ended.emit(Global.Endings.LOSE)
+
+
+func _ready():
+	# Connect signals to handle game events.
+	game_ended.connect(_on_game_ended)
+	game_start.connect(_on_game_start)
+
+
+func _on_game_ended(_ending: Endings):
+	is_ended = true
+	# Stop the timer if it is running.
+	if timer and not timer.is_stopped():
+		timer.stop()
+
+
+func _on_game_start():
+	is_ended = false
+	# Stop the timer if it is running.
+	if timer_time_limit > 0:
+		timer.start(timer_time_limit)
+		timer_added.emit()

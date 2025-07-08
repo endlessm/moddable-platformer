@@ -27,6 +27,7 @@ func _ready():
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
 	if DisplayServer.is_touchscreen_available():
 		%Start.hide()
+		Global.game_start.emit()
 
 
 func _on_joy_connection_changed(index: int, connected: bool):
@@ -48,6 +49,7 @@ func _unhandled_input(event):
 		and %Start.is_visible_in_tree()
 	):
 		%Start.hide()
+		Global.game_start.emit()
 
 
 func _on_coin_collected():
