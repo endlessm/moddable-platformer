@@ -37,7 +37,7 @@ func raise_flag(flag: Flag):
 
 
 func setup_timer(time_limit: int):
-	timer = Timer.new() 
+	timer = Timer.new()
 	timer.one_shot = true
 	timer.timeout.connect(_on_timer_timeout)
 	add_child(timer)
