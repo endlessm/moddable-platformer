@@ -29,9 +29,8 @@ var direction: int
 
 func _set_speed(new_speed):
 	speed = new_speed
-	if not is_node_ready():
-		await ready
-	_sprite.speed_scale = speed / 100
+	if is_node_ready():
+		_sprite.speed_scale = speed / 100
 
 
 func _ready():
