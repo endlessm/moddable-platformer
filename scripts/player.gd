@@ -34,7 +34,7 @@ const _PLAYER_ACTIONS = {
 
 ## How high does your character jump? Note that the gravity will
 ## be influenced by the [member GameLogic.gravity].
-@export_range(-1000, 1000, 10, "suffix:px/s") var jump_velocity = -880.0
+@export_range(0, 2000, 10, "suffix:px/s") var jump_velocity = 880.0
 
 ## How much should the character's jump be reduced if you let go of the jump
 ## key before the top of the jump? [code]0[/code] means “not at all”;
@@ -107,7 +107,7 @@ func _on_gravity_changed(new_gravity):
 
 
 func _jump():
-	velocity.y = jump_velocity
+	velocity.y = -jump_velocity
 	coyote_timer = 0
 	jump_buffer_timer = 0
 	if double_jump_armed:
