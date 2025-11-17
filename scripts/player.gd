@@ -82,10 +82,7 @@ func _set_speed(new_speed):
 	speed = new_speed
 	if not is_node_ready():
 		await ready
-	if speed == 0:
-		_sprite.speed_scale = 0
-	else:
-		_sprite.speed_scale = speed / 500
+	_sprite.speed_scale = speed / 500
 
 
 # Called when the node enters the scene tree for the first time.
