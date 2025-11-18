@@ -3,6 +3,12 @@ class_name Player
 extends CharacterBody2D
 ## A player's character, which can walk, jump, and stomp on enemies.
 
+## The player-character's maximum downwards speed while gliding.
+## Making this number smaller allows the player to glide further.
+## [br][br]
+## Used by [method _glide].
+const GLIDE_TERMINAL_VELOCITY = 100
+
 ## Which player controls this character?
 @export var player: Global.Player = Global.Player.ONE
 
@@ -57,6 +63,7 @@ var original_position: Vector2
 @onready var _double_jump_particles: CPUParticles2D = %DoubleJumpParticles
 
 @onready var _jump_sfx: AudioStreamPlayer = %JumpSFX
+@onready var _glide_sfx: AudioStreamPlayer = %GlideSFX
 
 
 func _set_sprite_frames(new_sprite_frames):
@@ -106,6 +113,21 @@ func stomp():
 	_jump()
 
 
+## If the player-character is in the air, and the "jump" action is held, clamp the downwards
+## velocity to a constant. Must be called after applying gravity to the player-character.
+func _glide() -> void:
+	if not is_on_floor() and Input.is_action_pressed(Actions.lookup(player, "jump")):
+		if velocity.y > GLIDE_TERMINAL_VELOCITY:
+			velocity.y = GLIDE_TERMINAL_VELOCITY
+
+		# Only play the sound effect when the player-character is moving downwards, not while
+		# jumping upwards
+		if velocity.y > 0 and not _glide_sfx.playing:
+			_glide_sfx.play()
+	elif _glide_sfx.playing:
+		_glide_sfx.stop()
+
+
 func _physics_process(delta):
 	# Don't move if there are no lives left.
 	if Global.lives <= 0:
@@ -141,6 +163,8 @@ func _physics_process(delta):
 		)
 	else:
 		velocity.x = move_toward(velocity.x, 0, acceleration * delta)
+
+	# _glide()
 
 	if velocity == Vector2.ZERO:
 		_sprite.play("idle")
