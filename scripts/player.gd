@@ -9,6 +9,12 @@ extends CharacterBody2D
 ## Used by [method _glide].
 const GLIDE_TERMINAL_VELOCITY = 100
 
+## How many pixels the player-character should teleport horizontally when the
+## teleport special ability is used.
+## [br][br]
+## Used by [method _teleport].
+const TELEPORT_DISTANCE = 512
+
 ## Which player controls this character?
 @export var player: Global.Player = Global.Player.ONE
 
@@ -64,6 +70,7 @@ var original_position: Vector2
 
 @onready var _jump_sfx: AudioStreamPlayer = %JumpSFX
 @onready var _glide_sfx: AudioStreamPlayer = %GlideSFX
+@onready var _teleport_sfx: AudioStreamPlayer = %TeleportSFX
 
 
 func _set_sprite_frames(new_sprite_frames):
@@ -128,6 +135,19 @@ func _glide() -> void:
 		_glide_sfx.stop()
 
 
+## If the "teleport" action is pressed, and the player is moving the character horizontally,
+## teleport the character in that horizontal direction.
+func _teleport(input_direction: float) -> void:
+	if (
+		Input.is_action_just_pressed(Actions.lookup(player, "teleport"))
+		and not is_zero_approx(input_direction)
+	):
+		# TODO: Check if we are teleporting into a wall (in which case the player should lose a
+		# life) or an enemy (in which case maybe the enemy should be telefragged/defeated?)
+		global_position.x += TELEPORT_DISTANCE * input_direction
+		_teleport_sfx.play()
+
+
 func _physics_process(delta):
 	# Don't move if there are no lives left.
 	if Global.lives <= 0:
@@ -179,6 +199,8 @@ func _physics_process(delta):
 		_sprite.flip_h = velocity.x < 0
 
 	move_and_slide()
+
+	# _teleport(direction)
 
 	coyote_timer -= delta
 	jump_buffer_timer -= delta
