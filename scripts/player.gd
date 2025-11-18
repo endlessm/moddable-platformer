@@ -56,6 +56,8 @@ var original_position: Vector2
 @onready var _initial_sprite_frames: SpriteFrames = %AnimatedSprite2D.sprite_frames
 @onready var _double_jump_particles: CPUParticles2D = %DoubleJumpParticles
 
+@onready var _jump_sfx: AudioStreamPlayer = %JumpSFX
+
 
 func _set_sprite_frames(new_sprite_frames):
 	sprite_frames = new_sprite_frames
@@ -96,6 +98,7 @@ func _jump():
 		_double_jump_particles.emitting = true
 	elif double_jump:
 		double_jump_armed = true
+	_jump_sfx.play()
 
 
 func stomp():
