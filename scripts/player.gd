@@ -3,21 +3,6 @@ class_name Player
 extends CharacterBody2D
 ## A player's character, which can walk, jump, and stomp on enemies.
 
-const _PLAYER_ACTIONS = {
-	Global.Player.ONE:
-	{
-		"jump": "player_1_jump",
-		"left": "player_1_left",
-		"right": "player_1_right",
-	},
-	Global.Player.TWO:
-	{
-		"jump": "player_2_jump",
-		"left": "player_2_left",
-		"right": "player_2_right",
-	},
-}
-
 ## Which player controls this character?
 @export var player: Global.Player = Global.Player.ONE
 
@@ -118,43 +103,6 @@ func stomp():
 	_jump()
 
 
-func _player_just_pressed(action):
-	if player == Global.Player.BOTH:
-		return (
-			Input.is_action_just_pressed(_PLAYER_ACTIONS[Global.Player.ONE][action])
-			or Input.is_action_just_pressed(_PLAYER_ACTIONS[Global.Player.TWO][action])
-		)
-	return Input.is_action_just_pressed(_PLAYER_ACTIONS[player][action])
-
-
-func _player_just_released(action):
-	if player == Global.Player.BOTH:
-		return (
-			Input.is_action_just_released(_PLAYER_ACTIONS[Global.Player.ONE][action])
-			or Input.is_action_just_released(_PLAYER_ACTIONS[Global.Player.TWO][action])
-		)
-	return Input.is_action_just_released(_PLAYER_ACTIONS[player][action])
-
-
-func _get_player_axis(action_a, action_b):
-	if player == Global.Player.BOTH:
-		return clamp(
-			(
-				Input.get_axis(
-					_PLAYER_ACTIONS[Global.Player.ONE][action_a],
-					_PLAYER_ACTIONS[Global.Player.ONE][action_b]
-				)
-				+ Input.get_axis(
-					_PLAYER_ACTIONS[Global.Player.TWO][action_a],
-					_PLAYER_ACTIONS[Global.Player.TWO][action_b]
-				)
-			),
-			-1,
-			1
-		)
-	return Input.get_axis(_PLAYER_ACTIONS[player][action_a], _PLAYER_ACTIONS[player][action_b])
-
-
 func _physics_process(delta):
 	# Don't move if there are no lives left.
 	if Global.lives <= 0:
@@ -165,7 +113,7 @@ func _physics_process(delta):
 		coyote_timer = (coyote_time + delta)
 		double_jump_armed = false
 
-	if _player_just_pressed("jump"):
+	if Input.is_action_just_pressed(Actions.lookup(player, "jump")):
 		jump_buffer_timer = (jump_buffer + delta)
 
 	if jump_buffer_timer > 0 and (double_jump_armed or coyote_timer > 0):
@@ -173,7 +121,7 @@ func _physics_process(delta):
 
 	# Reduce velocity if the player lets go of the jump key before the apex.
 	# This allows controlling the height of the jump.
-	if _player_just_released("jump") and velocity.y < 0:
+	if Input.is_action_just_released(Actions.lookup(player, "jump")) and velocity.y < 0:
 		velocity.y *= (1 - (jump_cut_factor / 100.00))
 
 	# Add the gravity.
@@ -181,8 +129,7 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = _get_player_axis("left", "right")
+	var direction = Input.get_axis(Actions.lookup(player, "left"), Actions.lookup(player, "right"))
 	if direction:
 		velocity.x = move_toward(
 			velocity.x,
