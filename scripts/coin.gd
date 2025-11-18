@@ -15,9 +15,11 @@ extends Area2D
 
 
 func _set_texture(new_texture: Texture2D):
-	if not is_node_ready():
-		await ready
 	texture = new_texture
+
+	if not is_node_ready():
+		return
+
 	if texture != null:
 		_sprite.texture = texture
 	else:
@@ -32,6 +34,7 @@ func _set_tint(new_tint: Color):
 
 
 func _ready():
+	_set_texture(texture)
 	_set_tint(tint)
 
 
