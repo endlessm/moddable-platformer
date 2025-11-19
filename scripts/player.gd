@@ -148,10 +148,35 @@ func _teleport(input_direction: float) -> void:
 		_teleport_sfx.play()
 
 
+## If the "phase" action is pressed, make the player-character invulnerable, but also unable to
+## interact with coins.
+func _phase() -> void:
+	# Check if the player is holding the "phase" action button.
+	if Input.is_action_just_pressed(Actions.lookup(player, "phase")):
+		# While phasing, disable collisions on the PLAYER physics layer.
+		set_collision_layer_value(Global.PhysicsLayers.PLAYER, false)
+		set_collision_mask_value(Global.PhysicsLayers.PLAYER, false)
+
+		# Make the sprite semitransparent
+		_sprite.modulate.a = 0.5
+
+		# TODO: Is this ability too powerful? Should it have a timer/stamina so the player can only
+		# use it occasionally and for a short time?
+	elif Input.is_action_just_released(Actions.lookup(player, "phase")):
+		# Re-enable collisions on the PLAYER physics layer.
+		set_collision_layer_value(Global.PhysicsLayers.PLAYER, true)
+		set_collision_mask_value(Global.PhysicsLayers.PLAYER, true)
+
+		# Make the sprite opaque again
+		_sprite.modulate.a = 1
+
+
 func _physics_process(delta):
 	# Don't move if there are no lives left.
 	if Global.lives <= 0:
 		return
+
+	# _phase()
 
 	# Handle jump
 	if is_on_floor():
