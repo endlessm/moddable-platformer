@@ -15,6 +15,13 @@ const GLIDE_TERMINAL_VELOCITY = 100
 ## Used by [method _teleport].
 const TELEPORT_DISTANCE = 512
 
+## How much to scale [member jump_velocity] when the player-character is shrunk. Setting this close
+## to or below [code]0[/code] prevents jumping; setting this to [code]1[/code] or greater causes
+## jumps while shrunk to be the same as normal size.
+## [br][br]
+## Used by [method _shrink].
+const JUMP_VELOCITY_SCALE_WHEN_SMALL = 0.85
+
 ## Which player controls this character?
 @export var player: Global.Player = Global.Player.ONE
 
@@ -63,6 +70,9 @@ var double_jump_armed: bool = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var original_position: Vector2
+
+# Whether the player-character is currently shrunk. See _shrink().
+var _is_shrunk := false
 
 @onready var _sprite: AnimatedSprite2D = %AnimatedSprite2D
 @onready var _initial_sprite_frames: SpriteFrames = %AnimatedSprite2D.sprite_frames
@@ -171,6 +181,29 @@ func _phase() -> void:
 		_sprite.modulate.a = 1
 
 
+## When the "shrink" action is pressed, toggle the player between normal size and half-size. While
+## shrunk, the player can pass through narrower passages, but cannot jump so high.
+func _shrink() -> void:
+	if Input.is_action_just_pressed(Actions.lookup(player, "shrink")):
+		_is_shrunk = not _is_shrunk
+
+		if _is_shrunk:
+			# Shrink the player-character's sprite and collision shape
+			scale = Vector2(0.5, 0.5)
+		else:
+			scale = Vector2(1, 1)
+
+	if _is_shrunk:
+		# Reduce the jump height while shrunk. _jump() sets velocity.y to -jump_velocity, so
+		# clamping this to a smaller value cuts the initial upwards velocity, and hence the jump
+		# height.
+		if velocity.y < -jump_velocity * JUMP_VELOCITY_SCALE_WHEN_SMALL:
+			velocity.y = -jump_velocity * JUMP_VELOCITY_SCALE_WHEN_SMALL
+
+	# TODO: should there be other consequences to being small? Could we make the player somehow more
+	# vulnerable to enemies?
+
+
 func _physics_process(delta):
 	# Don't move if there are no lives left.
 	if Global.lives <= 0:
@@ -197,6 +230,8 @@ func _physics_process(delta):
 	# Add the gravity.
 	if coyote_timer <= 0:
 		velocity.y += gravity * delta
+
+	# _shrink()
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction = Input.get_axis(Actions.lookup(player, "left"), Actions.lookup(player, "right"))
