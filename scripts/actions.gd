@@ -12,6 +12,9 @@ const ACTIONS = [
 	&"jump",
 	&"left",
 	&"right",
+	&"teleport",
+	&"phase",
+	&"shrink",
 ]
 
 # Dictionary[Global.Player, Dictionary[StringName, StringName]]
