@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dhcpt1kt8cs0g"]
+[gd_scene load_steps=16 format=4 uid="uid://dhcpt1kt8cs0g"]
 
 [ext_resource type="PackedScene" uid="uid://8st4scqt06l8" path="res://components/player/player.tscn" id="2_7yl00"]
 [ext_resource type="PackedScene" uid="uid://jnrusvm3gric" path="res://spaces/background.tscn" id="2_tb5a2"]
@@ -13,6 +13,12 @@
 [ext_resource type="SpriteFrames" uid="uid://bo581k1esb50n" path="res://components/player/spriteframes-red.tres" id="9_qmofe"]
 [ext_resource type="PackedScene" uid="uid://beuisy5yrw0bq" path="res://components/flag/flag.tscn" id="12_dkbog"]
 [ext_resource type="Script" uid="uid://boqbxvbja884q" path="res://scripts/multiplayer_camera.gd" id="13_0d2mj"]
+
+[sub_resource type="Theme" id="Theme_ycdy4"]
+default_font_size = 48
+
+[sub_resource type="Theme" id="Theme_w48qg"]
+default_font_size = 48
 
 [node name="Main" type="Node2D"]
 
@@ -227,6 +233,45 @@ width = 2
 [node name="Platform11" parent="Platforms" instance=ExtResource("4_gd51l")]
 position = Vector2(2560, 331)
 width = 2
+
+[node name="SpecialHints" type="Node2D" parent="."]
+
+[node name="GlideHint" type="Label" parent="SpecialHints"]
+offset_left = 262.0
+offset_top = -1553.0
+offset_right = 805.0
+offset_bottom = -1486.0
+theme = SubResource("Theme_ycdy4")
+text = "If only you could glide…"
+
+[node name="PhaseHint" type="Label" parent="SpecialHints"]
+offset_left = 4626.0
+offset_top = 637.0
+offset_right = 5006.0
+offset_bottom = 844.0
+theme = SubResource("Theme_ycdy4")
+text = "If only you could
+phase through
+this enemy…"
+
+[node name="ShrinkHint" type="Label" parent="SpecialHints"]
+offset_left = 4633.0
+offset_top = 38.0
+offset_right = 5013.0
+offset_bottom = 245.0
+theme = SubResource("Theme_ycdy4")
+text = "If only you could
+make yourself
+smaller…"
+
+[node name="TeleportHint" type="Label" parent="SpecialHints"]
+offset_left = 5255.0
+offset_top = 126.0
+offset_right = 5764.0
+offset_bottom = 305.0
+theme = SubResource("Theme_w48qg")
+text = "If only you
+could teleport…"
 
 [node name="Player" parent="." instance=ExtResource("2_7yl00")]
 position = Vector2(512, 576)
