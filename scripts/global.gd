@@ -16,6 +16,15 @@ signal timer_added
 enum Endings { WIN, LOSE }
 enum Player { ONE, TWO, BOTH }
 
+## These constants correspond to the names configured in Project Settings → Layer Names → 2D
+## Physics. Please keep these in sync!
+enum PhysicsLayers {
+	PLAYER = 1,
+	COINS = 2,
+	PLATFORMS = 3,
+	ENEMY = 4,
+}
+
 ## Timer for finishing the level.
 var timer: Timer
 
