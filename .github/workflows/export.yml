@@ -13,7 +13,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
 
 env:
-  GODOT_VERSION: 4.4.1
+  GODOT_VERSION: 4.5.1
 
 jobs:
   build:
