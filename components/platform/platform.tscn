@@ -3,9 +3,11 @@
 [ext_resource type="Script" uid="uid://dilh5jyuklov6" path="res://components/platform/platform.gd" id="1_dpc6h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4vtk"]
+resource_local_to_scene = true
 size = Vector2(256, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o2vn2"]
+resource_local_to_scene = true
 size = Vector2(256, 128)
 
 [sub_resource type="Animation" id="Animation_6232f"]
