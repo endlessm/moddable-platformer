@@ -2,8 +2,11 @@
 class_name Platform
 extends Node2D
 
-const TILE_WIDTH: int = 128
-const SPRITE: Texture2D = preload("res://assets/tiles-a.png")
+const DEFAULT_TILE_SET = preload("res://spaces/tileset-a.tres")
+
+## Which tileset should be used to draw the platform?
+@export var tile_set: TileSet = DEFAULT_TILE_SET:
+	set = _set_tile_set
 
 ## How many tiles wide is the platform?
 @export_range(1, 20, 1, "suffix:tiles") var width: int = 3:
@@ -26,6 +29,16 @@ var fall_timer: Timer
 @onready var _animation_player := %AnimationPlayer
 
 
+func _set_tile_set(new_tile_set):
+	if new_tile_set:
+		tile_set = new_tile_set
+	else:
+		tile_set = DEFAULT_TILE_SET
+
+	if is_node_ready():
+		_recreate_sprites()
+
+
 func _set_width(new_width):
 	width = new_width
 
@@ -44,17 +57,20 @@ func _recreate_sprites():
 	for c in _sprites.get_children():
 		c.queue_free()
 
+	var tile_width := tile_set.tile_size.x
+	var sprite: Texture2D = tile_set.get_source(tile_set.get_source_id(0)).texture
+
 	_collision_shape.one_way_collision = one_way
-	_collision_shape.shape.set_size(Vector2(width * TILE_WIDTH, TILE_WIDTH))
+	_collision_shape.shape.set_size(Vector2(width * tile_width, tile_width))
 	_area_collision_shape.shape.set_size(
-		Vector2(width * TILE_WIDTH, _area_collision_shape.shape.size[1])
+		Vector2(width * tile_width, _area_collision_shape.shape.size[1])
 	)
 
-	var center: float = (width - 1) * TILE_WIDTH / 2.0
+	var center: float = (width - 1) * tile_width / 2.0
 
 	for i in range(0, width):
 		var new_sprite := Sprite2D.new()
-		new_sprite.texture = SPRITE
+		new_sprite.texture = sprite
 		new_sprite.hframes = 12
 		new_sprite.vframes = 3
 		if one_way:
@@ -69,7 +85,7 @@ func _recreate_sprites():
 				new_sprite.frame_coords = Vector2i(6, 0)
 		else:
 			new_sprite.frame_coords = Vector2i(10, 1)
-		new_sprite.position = Vector2(i * TILE_WIDTH - center, 0)
+		new_sprite.position = Vector2(i * tile_width - center, 0)
 		_sprites.add_child(new_sprite)
 
 
