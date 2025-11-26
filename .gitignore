@@ -3,3 +3,8 @@
 
 # Working directory
 build/
+
+# For simplicity this repo does not use Git LFS; so committing potentially large
+# binary files like Aseprite projects is likely to be a mistake.
+*.ase
+*.aseprite

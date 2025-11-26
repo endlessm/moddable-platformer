@@ -1,7 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://danlrmsfmsros"]
 
-[ext_resource type="TileSet" uid="uid://bmkax0b814rmy" path="res://spaces/tileset-a.tres" id="1_iow8m"]
+[ext_resource type="TileSet" uid="uid://321ocrwkcyye" path="res://spaces/tileset-threadbare.tres" id="1_4vr7i"]
 
 [node name="TileMapLayer" type="TileMapLayer"]
-use_parent_material = true
-tile_set = ExtResource("1_iow8m")
+tile_set = ExtResource("1_4vr7i")

@@ -2,7 +2,7 @@
 class_name Platform
 extends Node2D
 
-const DEFAULT_TILE_SET = preload("res://spaces/tileset-a.tres")
+const DEFAULT_TILE_SET = preload("res://spaces/tileset-threadbare.tres")
 
 ## Which tileset should be used to draw the platform?
 @export var tile_set: TileSet = DEFAULT_TILE_SET:
