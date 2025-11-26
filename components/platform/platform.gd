@@ -16,9 +16,16 @@ const DEFAULT_TILE_SET = preload("res://spaces/tileset-threadbare.tres")
 @export var one_way: bool = false:
 	set = _set_one_way
 
+@export_group("Falling Platform")
+
+## Whether the platform should fall after the player-character touches it.
+@export_custom(PROPERTY_HINT_GROUP_ENABLE, "") var fall: bool = false
+
 ## Number of seconds after touching the platform for it to fall.
-## Negative values won't fall.
-@export var fall_time: float = -1
+## If set to [code]0[/code], the platform falls as soon as the player-character touches it.
+## [br][br]
+## Has no effect if [member fall] is disabled.
+@export_range(0, 5, 0.1, "suffix:s", "or_greater") var fall_time: float = 2.0
 
 var fall_timer: Timer
 
@@ -101,10 +108,14 @@ func _ready():
 func _on_area_2d_body_entered(body):
 	if not body.is_in_group("players"):
 		return
+
+	if not fall:
+		return
+
 	if fall_time > 0:
 		fall_timer.start(fall_time)
 		_animation_player.play("shake")
-	elif fall_time == 0:
+	else:
 		_rigid_body.call_deferred("set_freeze_enabled", false)
 
 
