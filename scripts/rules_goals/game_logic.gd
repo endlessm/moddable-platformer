@@ -7,12 +7,12 @@ extends Node
 ## Should you win the game by collecting coins?
 @export var win_by_collecting_coins: bool = false
 
-# HACK: the step needs to be 0.9 for displaying a slider.
+# TODO: When the game is updated to Godot 4.6, add prefer_slider hint
 ## How many coins to collect for winning?
 ## If zero, all the coins must be collected.[br]
 ## [b]Note:[/b] if you set this to a number bigger than the actual coins,
 ## the game won't be winnable.
-@export_range(0, 100, 0.9, "or_greater") var coins_to_win: int = 0
+@export_range(0, 100, 1, "or_greater") var coins_to_win: int = 0
 
 ## Should you win the game by reaching a flag?[br]
 ## If the option to win by collecting coins is also set, then it will only be
@@ -44,13 +44,6 @@ func _set_lives(new_lives):
 	Global.lives = lives
 
 
-func _get_all_coins(node, accumulator = []):
-	if node is Coin:
-		accumulator.append(node)
-	for child in node.get_children():
-		_get_all_coins(child, accumulator)
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if Engine.is_editor_hint():
@@ -65,9 +58,7 @@ func _ready():
 	if win_by_collecting_coins:
 		Global.coin_collected.connect(_on_coin_collected)
 		if coins_to_win == 0:
-			var coins = []
-			_get_all_coins(get_parent(), coins)
-			coins_to_win = coins.size()
+			coins_to_win = get_tree().get_node_count_in_group(&"coins")
 	if win_by_reaching_flag:
 		Global.flag_raised.connect(_on_flag_raised)
 
