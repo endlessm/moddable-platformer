@@ -7,12 +7,12 @@ extends Node
 ## Should you win the game by collecting coins?
 @export var win_by_collecting_coins: bool = false
 
-# HACK: the step needs to be 0.9 for displaying a slider.
+# TODO: When the game is updated to Godot 4.6, add prefer_slider hint
 ## How many coins to collect for winning?
 ## If zero, all the coins must be collected.[br]
 ## [b]Note:[/b] if you set this to a number bigger than the actual coins,
 ## the game won't be winnable.
-@export_range(0, 100, 0.9, "or_greater") var coins_to_win: int = 0
+@export_range(0, 100, 1, "or_greater") var coins_to_win: int = 0
 
 ## Should you win the game by reaching a flag?[br]
 ## If the option to win by collecting coins is also set, then it will only be
