@@ -47,6 +47,7 @@ freeze = true
 unique_name_in_owner = true
 position = Vector2(0, -84)
 shape = SubResource("RectangleShape2D_i4vtk")
+debug_color = Color(0.843463, 0.380052, 0, 0.42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 unique_name_in_owner = true
