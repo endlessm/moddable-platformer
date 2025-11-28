@@ -210,13 +210,15 @@ position_smoothing_enabled = true
 
 [node name="HUD" parent="." instance=ExtResource("6_mp7wy")]
 
-[node name="Enemy" parent="." instance=ExtResource("9_l6smt")]
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("9_l6smt")]
 position = Vector2(1600, 704)
 
-[node name="Enemy2" parent="." instance=ExtResource("9_l6smt")]
+[node name="Enemy2" parent="Enemies" instance=ExtResource("9_l6smt")]
 position = Vector2(1920, 576)
 
-[node name="Enemy3" parent="." instance=ExtResource("9_l6smt")]
+[node name="Enemy3" parent="Enemies" instance=ExtResource("9_l6smt")]
 position = Vector2(4096, 960)
 
 [node name="Flag" parent="." instance=ExtResource("12_dkbog")]
