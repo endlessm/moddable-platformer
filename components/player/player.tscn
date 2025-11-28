@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://8st4scqt06l8"]
 
 [ext_resource type="Script" uid="uid://umb21eb2y1oj" path="res://scripts/player.gd" id="1_w3ms2"]
-[ext_resource type="SpriteFrames" uid="uid://bo581k1esb50n" path="res://components/player/spriteframes-red.tres" id="2_msaml"]
+[ext_resource type="SpriteFrames" uid="uid://c2wpvtw1stuyq" path="res://components/player/spriteframes-inkdrinker-red.tres" id="2_msaml"]
 [ext_resource type="AudioStream" uid="uid://dmx2rtf2vy1" path="res://assets/sounds/244654__dsg__pop-2.ogg" id="3_ph1f6"]
 [ext_resource type="AudioStream" uid="uid://bx1joarpc14j5" path="res://assets/sounds/538066__stevielematt__boing.ogg" id="3_wa6cj"]
 [ext_resource type="AudioStream" uid="uid://p0b3e0t7h8j3" path="res://assets/sounds/596541__tothrec2__large-wings-flapping-foley.ogg" id="4_mpawu"]
@@ -46,7 +46,8 @@ color = Color(1, 1, 0, 1)
 unique_name_in_owner = true
 position = Vector2(0, -64)
 sprite_frames = ExtResource("2_msaml")
-animation = &"all"
+animation = &"idle"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -46)
