@@ -32,6 +32,7 @@ window/stretch/mode="canvas_items"
 [global_group]
 
 players=""
+coins="Coins that must be collected to win the level"
 
 [input]
 
