@@ -247,7 +247,7 @@ func _physics_process(delta):
 	if Global.lives <= 0:
 		return
 
-	# _phase()
+	#_phase()
 
 	# Handle jump
 	if is_on_floor():
@@ -269,7 +269,7 @@ func _physics_process(delta):
 	if coyote_timer <= 0:
 		velocity.y += gravity * delta
 
-	# _shrink()
+	#_shrink()
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction = Input.get_axis(Actions.lookup(player, "left"), Actions.lookup(player, "right"))
@@ -282,7 +282,7 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, acceleration * delta)
 
-	# _glide()
+	#_glide()
 
 	if velocity == Vector2.ZERO:
 		_sprite.play("idle")
@@ -298,7 +298,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-	# _teleport(direction)
+	#_teleport(direction)
 
 	coyote_timer -= delta
 	jump_buffer_timer -= delta
