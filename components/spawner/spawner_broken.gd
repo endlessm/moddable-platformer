@@ -1,5 +1,5 @@
 class_name SpawnerBroken
-extends Node2D
+extends Marker2D
 ## @experimental
 ## Periodically spawns a scene at this node's position.
 ##
