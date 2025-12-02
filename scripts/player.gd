@@ -69,7 +69,9 @@ var coyote_timer: float = 0
 # If positive, the player pressed jump this long ago
 var jump_buffer_timer: float = 0
 
-# If true, the player is already jumping and can perform a double-jump
+# Set to true when the player jumps from the floor, if double_jump is true (i.e. double-jumps are
+# enabled). When this is true, the player can press the jump button to perform a double-jump. Reset
+# to false when the player performs a double-jump, or lands on the floor.
 var double_jump_armed: bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
