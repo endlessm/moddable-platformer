@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://4tnolf5qjb55"]
+[gd_scene load_steps=5 format=3 uid="uid://4tnolf5qjb55"]
 
 [ext_resource type="Script" uid="uid://b4j8f10agdcvu" path="res://scripts/coin.gd" id="1_68uat"]
 [ext_resource type="Texture2D" uid="uid://84t7yee808cn" path="res://assets/items/button.png" id="2_80pk3"]
+[ext_resource type="AudioStream" uid="uid://brp8t8y6k0n5r" path="res://assets/sounds/545857__ezzin__coin-flip.ogg" id="3_80pk3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5w0o8"]
 radius = 46.72
@@ -21,5 +22,9 @@ texture = ExtResource("2_80pk3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5w0o8")
+
+[node name="CollectSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_80pk3")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

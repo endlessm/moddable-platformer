@@ -12,6 +12,7 @@ extends Area2D
 
 @onready var _sprite: Sprite2D = %Sprite2D
 @onready var _initial_texture: Texture2D = %Sprite2D.texture
+@onready var _collect_sound_player: AudioStreamPlayer2D = %CollectSoundPlayer
 
 
 func _set_texture(new_texture: Texture2D):
@@ -40,4 +41,16 @@ func _ready():
 
 func _on_body_entered(_body):
 	Global.collect_coin()
+
+	# Prevent collecting the coin a second time
+	set_deferred("monitoring", false)
+	set_deferred("monitorable", false)
+
+	# TODO: Add a "collected" animation that plays alongside the sound?
+	visible = false
+
+	if _collect_sound_player:
+		_collect_sound_player.play()
+		await _collect_sound_player.finished
+
 	queue_free()
