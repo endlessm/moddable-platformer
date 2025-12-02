@@ -3,6 +3,7 @@ class_name Player
 extends CharacterBody2D
 ## A player's character, which can walk, jump, and stomp on enemies.
 
+#region Constants used by special abilities
 ## The player-character's maximum downwards speed while gliding.
 ## Making this number smaller allows the player to glide further.
 ## [br][br]
@@ -21,7 +22,9 @@ const TELEPORT_DISTANCE = 512
 ## [br][br]
 ## Used by [method _shrink].
 const JUMP_VELOCITY_SCALE_WHEN_SMALL = 0.85
+#endregion
 
+#region Exported parameters that the game designer can adjust in the Inspector tab for the Player
 ## Which player controls this character?
 @export var player: Global.Player = Global.Player.ONE
 
@@ -57,23 +60,32 @@ const JUMP_VELOCITY_SCALE_WHEN_SMALL = 0.85
 
 ## Can your character jump a second time while still in the air?
 @export var double_jump: bool = false
+#endregion
 
+#region Internal variables
 # If positive, the player is either on the ground, or left the ground less than this long ago
 var coyote_timer: float = 0
 
 # If positive, the player pressed jump this long ago
 var jump_buffer_timer: float = 0
 
-# If true, the player is already jumping and can perform a double-jump
+# Set to true when the player jumps from the floor, if double_jump is true (i.e. double-jumps are
+# enabled). When this is true, the player can press the jump button to perform a double-jump. Reset
+# to false when the player performs a double-jump, or lands on the floor.
 var double_jump_armed: bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+# Stores the player's original position when the game begins. Used by reset() to send the player
+# back to the start of the level after losing a life.
 var original_position: Vector2
 
 # Whether the player-character is currently shrunk. See _shrink().
 var _is_shrunk := false
+#endregion
 
+#region References to other nodes and resources in the Player scene
 @onready var _sprite: AnimatedSprite2D = %AnimatedSprite2D
 @onready var _initial_sprite_frames: SpriteFrames = %AnimatedSprite2D.sprite_frames
 @onready var _double_jump_particles: CPUParticles2D = %DoubleJumpParticles
@@ -81,8 +93,10 @@ var _is_shrunk := false
 @onready var _jump_sfx: AudioStreamPlayer = %JumpSFX
 @onready var _glide_sfx: AudioStreamPlayer = %GlideSFX
 @onready var _teleport_sfx: AudioStreamPlayer = %TeleportSFX
+#endregion
 
 
+#region Custom property-setting functions used by exported variables
 func _set_sprite_frames(new_sprite_frames):
 	sprite_frames = new_sprite_frames
 	if sprite_frames and is_node_ready():
@@ -93,6 +107,9 @@ func _set_speed(new_speed):
 	speed = new_speed
 	if is_node_ready():
 		_sprite.speed_scale = speed / 500
+
+
+#endregion
 
 
 # Called when the node enters the scene tree for the first time.
@@ -109,10 +126,23 @@ func _ready():
 	_set_sprite_frames(sprite_frames)
 
 
+#region Signal handlers
+# Handler for the Global.gravity_changed signal.
 func _on_gravity_changed(new_gravity):
 	gravity = new_gravity
 
 
+# Handler for the Global.lives_changed signal, which is emitted when the player loses a life.
+func _on_lives_changed():
+	if Global.lives > 0:
+		reset()
+
+
+#endregion
+
+
+# Propels the player-character upwards, as if jumping. Used by _physics_process in response to
+# player input, and by stomp() when the player-character stomps on an enemy.
 func _jump():
 	velocity.y = -jump_velocity
 	coyote_timer = 0
@@ -125,13 +155,16 @@ func _jump():
 	_jump_sfx.play()
 
 
+## Called from [class Enemy] when the player-character stomps on an enemy.
 func stomp():
 	double_jump_armed = false
 	_jump()
 
 
+#region Special abilities
 ## If the player-character is in the air, and the "jump" action is held, clamp the downwards
-## velocity to a constant. Must be called after applying gravity to the player-character.
+## velocity to a constant. Should be called from [code]_physics_process[/code] after applying
+## gravity to the player-character.
 func _glide() -> void:
 	if not is_on_floor() and Input.is_action_pressed(Actions.lookup(player, "jump")):
 		if velocity.y > GLIDE_TERMINAL_VELOCITY:
@@ -159,7 +192,8 @@ func _teleport(input_direction: float) -> void:
 
 
 ## If the "phase" action is pressed, make the player-character invulnerable, but also unable to
-## interact with coins.
+## interact with coins. Should be called from [code]_physics_process[/code] before calling
+## [code]move_and_slide()[/code].
 func _phase() -> void:
 	# Check if the player is holding the "phase" action button.
 	if Input.is_action_just_pressed(Actions.lookup(player, "phase")):
@@ -182,7 +216,8 @@ func _phase() -> void:
 
 
 ## When the "shrink" action is pressed, toggle the player between normal size and half-size. While
-## shrunk, the player can pass through narrower passages, but cannot jump so high.
+## shrunk, the player can pass through narrower passages, but cannot jump so high. Should be called
+## from [code]_physics_process[/code] after handling any jump inputs.
 func _shrink() -> void:
 	if Input.is_action_just_pressed(Actions.lookup(player, "shrink")):
 		_is_shrunk = not _is_shrunk
@@ -204,12 +239,17 @@ func _shrink() -> void:
 	# vulnerable to enemies?
 
 
+#endregion
+
+
+# Called by Godot for every physics frame. Moves the player-character in response to player inputs,
+# gravity, and the physics of the level.
 func _physics_process(delta):
 	# Don't move if there are no lives left.
 	if Global.lives <= 0:
 		return
 
-	# _phase()
+	#_phase()
 
 	# Handle jump
 	if is_on_floor():
@@ -231,7 +271,7 @@ func _physics_process(delta):
 	if coyote_timer <= 0:
 		velocity.y += gravity * delta
 
-	# _shrink()
+	#_shrink()
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction = Input.get_axis(Actions.lookup(player, "left"), Actions.lookup(player, "right"))
@@ -244,7 +284,7 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, acceleration * delta)
 
-	# _glide()
+	#_glide()
 
 	if velocity == Vector2.ZERO:
 		_sprite.play("idle")
@@ -260,19 +300,15 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-	# _teleport(direction)
+	#_teleport(direction)
 
 	coyote_timer -= delta
 	jump_buffer_timer -= delta
 
 
+## Restore the player to their initial position in the level. Called by _on_lives_changed.
 func reset():
 	position = original_position
 	velocity = Vector2.ZERO
 	coyote_timer = 0
 	jump_buffer_timer = 0
-
-
-func _on_lives_changed():
-	if Global.lives > 0:
-		reset()
