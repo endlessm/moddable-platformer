@@ -1,10 +1,28 @@
 @tool
 extends CanvasLayer
 
+@export var show_specials: bool = false:
+	set = _set_show_specials
+
 @onready var ending_labels = {
 	Global.Endings.WIN: %WinEnding,
 	Global.Endings.LOSE: %LoseEnding,
 }
+
+
+func _set_show_specials(new_value: bool) -> void:
+	show_specials = new_value
+
+	if not is_node_ready():
+		return
+
+	for section: Node in [
+		%PlayerOneJoypad,
+		%PlayerOneKeyboard,
+		%PlayerTwoJoypad,
+		%PlayerTwoKeyboard,
+	]:
+		section.get_node("Specials").visible = new_value
 
 
 func _process(_delta):
@@ -14,6 +32,8 @@ func _process(_delta):
 func _ready():
 	set_process(false)
 	set_physics_process(false)
+
+	show_specials = show_specials
 
 	Global.lives_changed.connect(_on_lives_changed)
 
