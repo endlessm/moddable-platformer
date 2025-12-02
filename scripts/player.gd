@@ -312,3 +312,4 @@ func reset():
 	velocity = Vector2.ZERO
 	coyote_timer = 0
 	jump_buffer_timer = 0
+	double_jump_armed = false
