@@ -249,6 +249,7 @@ func _physics_process(delta):
 	if Global.lives <= 0:
 		return
 
+	# Remove the '#' below to enable the phase special ability
 	#_phase()
 
 	# Handle jump
@@ -271,6 +272,7 @@ func _physics_process(delta):
 	if coyote_timer <= 0:
 		velocity.y += gravity * delta
 
+	# Remove the '#' below to enable the shrink special ability
 	#_shrink()
 
 	# Get the input direction and handle the movement/deceleration.
@@ -284,6 +286,7 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, acceleration * delta)
 
+	# Remove the '#' below to enable the glide special ability
 	#_glide()
 
 	if velocity == Vector2.ZERO:
@@ -300,6 +303,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 
+	# Remove the '#' below to enable the teleport special ability
 	#_teleport(direction)
 
 	coyote_timer -= delta
