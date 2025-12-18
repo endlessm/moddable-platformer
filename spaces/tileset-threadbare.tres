@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://321ocrwkcyye"]
+[gd_resource type="TileSet" format=3 uid="uid://321ocrwkcyye"]
 
 [ext_resource type="Texture2D" uid="uid://d2uesk6kurr2a" path="res://assets/tiles-threadbare.png" id="1_vyy2r"]
 

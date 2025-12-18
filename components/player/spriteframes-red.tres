@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=20 format=3 uid="uid://bo581k1esb50n"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bo581k1esb50n"]
 
 [ext_resource type="Texture2D" uid="uid://de3owpoc205t0" path="res://assets/player-red.png" id="1_3psl7"]
 

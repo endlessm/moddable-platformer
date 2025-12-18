@@ -24,7 +24,8 @@ jobs:
 
       - uses: endlessm/godot-export-action@v1
         with:
-          godot_version: 4.4.1
+          godot_version: 4.6
+          godot_flavor: beta1
 
       - name: Upload web artifact
         uses: actions/upload-artifact@v6

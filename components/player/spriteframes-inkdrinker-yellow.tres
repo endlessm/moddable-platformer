@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=31 format=3 uid="uid://beumtr8r151x"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://beumtr8r151x"]
 
 [ext_resource type="Texture2D" uid="uid://bise7ysec4rwh" path="res://assets/inkdrinker_idle_yellow.png" id="1_4c6lo"]
 [ext_resource type="Texture2D" uid="uid://glsjm46ba1xg" path="res://assets/inkdrinker_move_yellow.png" id="2_3ef0x"]
