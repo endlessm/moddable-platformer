@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://8st4scqt06l8"]
+[gd_scene format=3 uid="uid://8st4scqt06l8"]
 
 [ext_resource type="Script" uid="uid://umb21eb2y1oj" path="res://scripts/player.gd" id="1_w3ms2"]
 [ext_resource type="SpriteFrames" uid="uid://c2wpvtw1stuyq" path="res://components/player/spriteframes-inkdrinker-red.tres" id="2_msaml"]
@@ -20,14 +20,14 @@ random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("3_ph1f6")
 
-[node name="Player" type="CharacterBody2D" groups=["players"]]
+[node name="Player" type="CharacterBody2D" unique_id=1041196418 groups=["players"]]
 collision_layer = 3
 collision_mask = 5
 floor_constant_speed = true
 floor_snap_length = 32.0
 script = ExtResource("1_w3ms2")
 
-[node name="DoubleJumpParticles" type="CPUParticles2D" parent="."]
+[node name="DoubleJumpParticles" type="CPUParticles2D" parent="." unique_id=1486600990]
 unique_name_in_owner = true
 emitting = false
 amount = 60
@@ -42,29 +42,29 @@ gravity = Vector2(0, 1)
 scale_amount_max = 5.0
 color = Color(1, 1, 0, 1)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=16241589]
 unique_name_in_owner = true
 position = Vector2(0, -64)
 sprite_frames = ExtResource("2_msaml")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1239802489]
 position = Vector2(0, -46)
 shape = SubResource("CapsuleShape2D_7x5a4")
 one_way_collision = true
 
-[node name="SoundEffects" type="Node" parent="."]
+[node name="SoundEffects" type="Node" parent="." unique_id=971926404]
 
-[node name="JumpSFX" type="AudioStreamPlayer" parent="SoundEffects"]
+[node name="JumpSFX" type="AudioStreamPlayer" parent="SoundEffects" unique_id=1297022897]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_mpawu")
 
-[node name="GlideSFX" type="AudioStreamPlayer" parent="SoundEffects"]
+[node name="GlideSFX" type="AudioStreamPlayer" parent="SoundEffects" unique_id=1346432575]
 unique_name_in_owner = true
 stream = ExtResource("4_mpawu")
 
-[node name="TeleportSFX" type="AudioStreamPlayer" parent="SoundEffects"]
+[node name="TeleportSFX" type="AudioStreamPlayer" parent="SoundEffects" unique_id=1064972734]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_ph1f6")
 volume_db = -10.0

@@ -7,7 +7,7 @@ on:
       - published
   push:
     branches:
-      - '*'
+      - "*"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -24,7 +24,7 @@ jobs:
 
       - uses: endlessm/godot-export-action@v1
         with:
-          godot_version: 4.4.1
+          godot_version: "4.6"
 
       - name: Upload web artifact
         uses: actions/upload-artifact@v6
