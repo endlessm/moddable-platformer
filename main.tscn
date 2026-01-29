@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dhcpt1kt8cs0g"]
+[gd_scene load_steps=16 format=4 uid="uid://dhcpt1kt8cs0g"]
 
 [ext_resource type="PackedScene" uid="uid://8st4scqt06l8" path="res://components/player/player.tscn" id="2_7yl00"]
 [ext_resource type="PackedScene" uid="uid://jnrusvm3gric" path="res://spaces/background.tscn" id="2_tb5a2"]
@@ -14,6 +14,7 @@
 [ext_resource type="SpriteFrames" uid="uid://c2wpvtw1stuyq" path="res://components/player/spriteframes-inkdrinker-red.tres" id="9_qmofe"]
 [ext_resource type="PackedScene" uid="uid://beuisy5yrw0bq" path="res://components/flag/flag.tscn" id="12_dkbog"]
 [ext_resource type="Script" uid="uid://boqbxvbja884q" path="res://scripts/multiplayer_camera.gd" id="13_0d2mj"]
+[ext_resource type="PackedScene" uid="uid://cugv3o2f6ug6e" path="res://components/sign/sign.tscn" id="15_vivmo"]
 
 [node name="Main" type="Node2D"]
 
@@ -275,6 +276,14 @@ width = 2
 [node name="Platform16" parent="Platforms" instance=ExtResource("4_gd51l")]
 position = Vector2(2816, -816)
 width = 2
+
+[node name="Signs" type="Node2D" parent="."]
+
+[node name="Sign" parent="Signs" instance=ExtResource("15_vivmo")]
+position = Vector2(4283, 387)
+text = "How can I
+get past
+this wall?"
 
 [node name="Player" parent="." instance=ExtResource("2_7yl00")]
 position = Vector2(156, 500)
