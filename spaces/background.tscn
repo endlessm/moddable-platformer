@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://jnrusvm3gric"]
+[gd_scene format=3 uid="uid://jnrusvm3gric"]
 
 [ext_resource type="Texture2D" uid="uid://dw612tw7iymyb" path="res://assets/background-layer-1.png" id="1_0qn5k"]
 [ext_resource type="Script" uid="uid://dibflt2cj22ep" path="res://scripts/background.gd" id="1_1jh5j"]
@@ -14,17 +14,17 @@ width = 5115
 height = 1080
 fill_to = Vector2(0, 1)
 
-[node name="Background" type="ParallaxBackground"]
+[node name="Background" type="ParallaxBackground" unique_id=1290731880]
 follow_viewport_enabled = true
 scroll_ignore_camera_zoom = true
 script = ExtResource("1_1jh5j")
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="." unique_id=1681789262]
 unique_name_in_owner = true
 motion_scale = Vector2(0, 0)
 motion_mirroring = Vector2(1600, 0)
 
-[node name="ColorRect" type="ColorRect" parent="ParallaxLayer"]
+[node name="ColorRect" type="ColorRect" parent="ParallaxLayer" unique_id=1683033885]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -35,39 +35,39 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.980392, 0.980392, 0.980392, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer" unique_id=1947050647]
 texture = SubResource("GradientTexture2D_ljotv")
 centered = false
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="." unique_id=2004530896]
 unique_name_in_owner = true
 motion_scale = Vector2(0.03, 0)
 motion_mirroring = Vector2(1600, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer2"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer2" unique_id=315828000]
 position = Vector2(0, -115)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_0qn5k")
 centered = false
 
-[node name="Sprite2D2" type="Sprite2D" parent="ParallaxLayer2"]
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxLayer2" unique_id=581554285]
 position = Vector2(1600, -115)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_0qn5k")
 centered = false
 
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="." unique_id=747430527]
 unique_name_in_owner = true
 motion_scale = Vector2(0.1, 0)
 motion_mirroring = Vector2(1600, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer3"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer3" unique_id=1054470781]
 position = Vector2(0, -115)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_mk66l")
 centered = false
 
-[node name="Sprite2D2" type="Sprite2D" parent="ParallaxLayer3"]
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxLayer3" unique_id=1104791634]
 position = Vector2(1600, -115)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_mk66l")
