@@ -42,15 +42,15 @@ func _ready():
 func _on_body_entered(_body):
 	Global.collect_coin()
 
-	# Prevent collecting the coin a second time
-	set_deferred("monitoring", false)
-	set_deferred("monitorable", false)
-
-	# TODO: Add a "collected" animation that plays alongside the sound?
-	visible = false
-
 	if _collect_sound_player:
+		# Move the sound player node to the coin's parent. Otherwise, when the coin is freed,
+		# the sound player would also be freed and the sound would cut off.
+		_collect_sound_player.reparent(get_parent())
+
+		# Start the sound effect
 		_collect_sound_player.play()
-		await _collect_sound_player.finished
+
+		# When the sound finishes playing, free the sound player.
+		_collect_sound_player.finished.connect(_collect_sound_player.queue_free)
 
 	queue_free()
