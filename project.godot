@@ -8,11 +8,14 @@
 
 config_version=5
 
+[animation]
+
+
 [application]
 
 config/name="Moddable Platformer"
 config/version="$Format:%(describe:tags)$"
-run/main_scene="res://main.tscn"
+run/main_scene="uid://dhcpt1kt8cs0g"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
