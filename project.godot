@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 Global="*res://scripts/global.gd"
 Actions="*res://scripts/actions.gd"
+WebSceneSelector="uid://cag3i6auntfwn"
 
 [display]
 
