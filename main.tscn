@@ -214,37 +214,37 @@ width = 2
 position = Vector2(-1472, 0)
 width = 2
 one_way = true
-fall_time = 2.0
+fall = true
 
 [node name="Platform5" parent="Platforms" unique_id=783386559 instance=ExtResource("4_gd51l")]
 position = Vector2(-1152, 0)
 width = 2
 one_way = true
-fall_time = 2.0
+fall = true
 
 [node name="Platform6" parent="Platforms" unique_id=328079907 instance=ExtResource("4_gd51l")]
 position = Vector2(-832, 0)
 width = 2
 one_way = true
-fall_time = 2.0
+fall = true
 
 [node name="Platform7" parent="Platforms" unique_id=1586665119 instance=ExtResource("4_gd51l")]
 position = Vector2(-512, 0)
 width = 2
 one_way = true
-fall_time = 2.0
+fall = true
 
 [node name="Platform8" parent="Platforms" unique_id=1264675022 instance=ExtResource("4_gd51l")]
 position = Vector2(-192, 0)
 width = 2
 one_way = true
-fall_time = 2.0
+fall = true
 
 [node name="Platform9" parent="Platforms" unique_id=39900956 instance=ExtResource("4_gd51l")]
 position = Vector2(128, 0)
 width = 2
 one_way = true
-fall_time = 2.0
+fall = true
 
 [node name="Platform2" parent="Platforms" unique_id=16930057 instance=ExtResource("4_gd51l")]
 position = Vector2(1216, -64)
