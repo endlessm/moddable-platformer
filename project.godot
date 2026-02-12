@@ -8,9 +8,6 @@
 
 config_version=5
 
-[animation]
-
-
 [application]
 
 config/name="Moddable Platformer"
