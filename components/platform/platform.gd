@@ -4,6 +4,12 @@ extends Node2D
 
 const DEFAULT_TILE_SET = preload("res://spaces/tileset-threadbare.tres")
 
+const FRAME_COORDS_ONE_WAY_LEFT := Vector2i(5, 0)
+const FRAME_COORDS_ONE_WAY_MIDDLE := Vector2i(6, 0)
+const FRAME_COORDS_ONE_WAY_RIGHT := Vector2i(7, 0)
+const FRAME_COORDS_ONE_WAY_SINGLE := Vector2i(8, 0)
+const FRAME_COORDS_SOLID := Vector2i(10, 1)
+
 ## Which tileset should be used to draw the platform?
 @export var tile_set: TileSet = DEFAULT_TILE_SET:
 	set = _set_tile_set
@@ -42,6 +48,8 @@ func _set_tile_set(new_tile_set):
 	else:
 		tile_set = DEFAULT_TILE_SET
 
+	update_configuration_warnings()
+
 	if is_node_ready():
 		_recreate_sprites()
 
@@ -56,6 +64,8 @@ func _set_width(new_width):
 func _set_one_way(new_one_way):
 	one_way = new_one_way
 
+	update_configuration_warnings()
+
 	if is_node_ready():
 		_recreate_sprites()
 
@@ -64,8 +74,11 @@ func _recreate_sprites():
 	for c in _sprites.get_children():
 		c.queue_free()
 
+	if not tile_set.has_source(0):
+		return
+
 	var tile_width := tile_set.tile_size.x
-	var sprite: Texture2D = tile_set.get_source(tile_set.get_source_id(0)).texture
+	var sprite: Texture2D = tile_set.get_source(0).texture
 
 	_collision_shape.one_way_collision = one_way
 	_collision_shape.shape.set_size(Vector2(width * tile_width, tile_width))
@@ -83,17 +96,43 @@ func _recreate_sprites():
 		if one_way:
 			if i == 0:
 				if width == 1:
-					new_sprite.frame_coords = Vector2i(8, 0)
+					new_sprite.frame_coords = FRAME_COORDS_ONE_WAY_SINGLE
 				else:
-					new_sprite.frame_coords = Vector2i(5, 0)
+					new_sprite.frame_coords = FRAME_COORDS_ONE_WAY_LEFT
 			elif i == width - 1:
-				new_sprite.frame_coords = Vector2i(7, 0)
+				new_sprite.frame_coords = FRAME_COORDS_ONE_WAY_RIGHT
 			else:
-				new_sprite.frame_coords = Vector2i(6, 0)
+				new_sprite.frame_coords = FRAME_COORDS_ONE_WAY_MIDDLE
 		else:
-			new_sprite.frame_coords = Vector2i(10, 1)
+			new_sprite.frame_coords = FRAME_COORDS_SOLID
 		new_sprite.position = Vector2(i * tile_width - center, 0)
 		_sprites.add_child(new_sprite)
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings := PackedStringArray()
+
+	if not tile_set.has_source(0):
+		warnings.append("TileSet has no atlas source 0.")
+	else:
+		var source := tile_set.get_source(0)
+
+		var expected_coords: Array[Vector2i]
+		if one_way:
+			expected_coords = [
+				FRAME_COORDS_ONE_WAY_SINGLE,
+				FRAME_COORDS_ONE_WAY_LEFT,
+				FRAME_COORDS_ONE_WAY_MIDDLE,
+				FRAME_COORDS_ONE_WAY_RIGHT,
+			]
+		else:
+			expected_coords = [FRAME_COORDS_SOLID]
+
+		for coords in expected_coords:
+			if not source.has_tile(coords):
+				warnings.append("TileSet atlas 0 has no tile at %s." % coords)
+
+	return warnings
 
 
 func _ready():
