@@ -9,12 +9,9 @@ build/
 *.ase
 *.aseprite
 
-# Godot Patchwork addon, bundled editor build, launcher, updater, and
-# config/state files
-/addons/patchwork/
+# Godot Backstitch addon, bundled editor build, and config/state files
+/addons/backstitch/
 /godot_editor/
-.patchwork
-.patchwork_version
-patchwork.cfg
-launch-patchwork.exe
-update-patchwork.exe
+.backstitch_version
+/.backstitch/
+backstitch.cfg
