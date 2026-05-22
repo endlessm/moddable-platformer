@@ -187,7 +187,7 @@ func _teleport(input_direction: float) -> void:
 	):
 		# TODO: Check if we are teleporting into a wall (in which case the player should lose a
 		# life) or an enemy (in which case maybe the enemy should be telefragged/defeated?)
-		global_position.x += TELEPORT_DISTANCE * input_direction
+		global_position.x += TELEPORT_DISTANCE * signf(input_direction)
 		_teleport_sfx.play()
 
 
