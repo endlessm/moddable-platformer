@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://n24yvet11xse"]
+
+[ext_resource type="Script" uid="uid://bl1c57n0j768a" path="res://scripts/pause_screen.gd" id="1_y5lir"]
+[ext_resource type="Theme" uid="uid://b88jpx5kgv3j4" path="res://components/ui/theme.tres" id="2_34b7r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8yp4"]
+bg_color = Color(0.5019608, 0.5019608, 0.5019608, 0.7490196)
+
+[node name="PauseScreen" type="Node2D" unique_id=1043235669]
+process_mode = 3
+script = ExtResource("1_y5lir")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=127264615]
+unique_name_in_owner = true
+process_mode = 2
+layer = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1588442961]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r8yp4")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=886722388]
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme = ExtResource("2_34b7r")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer" unique_id=551811215]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer" unique_id=793104726]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer" unique_id=310925443]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resume"
+
+[node name="Restart" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer" unique_id=1651826743]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Restart"
+
+[node name="Quit" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer" unique_id=1166900506]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
