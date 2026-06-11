@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bi5370kgl6xcs" path="res://scripts/hud.gd" id="1_8msyy"]
 [ext_resource type="Texture2D" uid="uid://dgoqexmguhjly" path="res://assets/input-prompts/steam-deck_sheet_default/steamdeck_dpad_left.tres" id="2_615i1"]
+[ext_resource type="Theme" uid="uid://b88jpx5kgv3j4" path="res://components/ui/theme.tres" id="2_o2hcl"]
 [ext_resource type="Texture2D" uid="uid://d3um1i1lgu153" path="res://assets/heart.png" id="2_yyptq"]
 [ext_resource type="Texture2D" uid="uid://c6ic03u2yvnk6" path="res://assets/controls/flatLightLeft.png" id="3_cxgb6"]
 [ext_resource type="Texture2D" uid="uid://6m3x053rqyag" path="res://assets/input-prompts/steam-deck_sheet_default/steamdeck_button_a.tres" id="3_pw7dr"]
@@ -27,9 +28,6 @@
 [ext_resource type="Texture2D" uid="uid://b8qikt8t5p5bx" path="res://assets/input-prompts/keyboard-and-mouse_sheet_default/keyboard_shift.tres" id="18_d5hpo"]
 [ext_resource type="Texture2D" uid="uid://c10q4vbvv80br" path="res://assets/input-prompts/keyboard-and-mouse_sheet_default/keyboard_tab.tres" id="19_y8web"]
 
-[sub_resource type="Theme" id="Theme_0yvta"]
-default_font_size = 64
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b8smf"]
 
 [node name="HUD" type="CanvasLayer" unique_id=724048136]
@@ -44,8 +42,7 @@ offset_left = -331.5
 offset_right = 331.5
 offset_bottom = 420.0
 grow_horizontal = 2
-theme = SubResource("Theme_0yvta")
-theme_override_constants/separation = 32
+theme = ExtResource("2_o2hcl")
 
 [node name="Label" type="Label" parent="Start" unique_id=1432757565]
 layout_mode = 2
