@@ -34,8 +34,6 @@ win_by_collecting_coins = true
 win_by_reaching_flag = true
 
 [node name="Background" parent="." unique_id=735976399 instance=ExtResource("2_3dg71")]
-follow_viewport_enabled = false
-tint = Color(0.569993, 0.558956, 0.878091, 1)
 
 [node name="Dangerzone" parent="." unique_id=304085475 instance=ExtResource("3_bunc4")]
 position = Vector2(3072, 1216)
