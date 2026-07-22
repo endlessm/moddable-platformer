@@ -19,16 +19,16 @@ community platform and submit pull requests via
 
 ### Development environment
 
-Please use [pre-commit](https://pre-commit.com) to check for correct formatting
-and other issues before creating commits. To do this automatically, you can add
-it as a git hook:
+Please use [prek](https://prek.j178.dev/) to check for correct formatting
+and other issues before creating commits.
 
+First, follow the [prek installation
+instructions](https://prek.j178.dev/installation/) for your OS, if you don't
+already have it installed. Now add it as a git hook by running this in your
+clone of this repo:
+
+```bash
+prek install
 ```
-# If you don't have pre-commit already:
-pip install pre-commit
 
-# Setup git hook:
-pre-commit install
-```
-
-Now `pre-commit` will run automatically on `git commit`!
+Now `prek` will run automatically on `git commit`!
