@@ -22,7 +22,7 @@ jobs:
         with:
           lfs: true
 
-      - uses: endlessm/godot-export-action@v2
+      - uses: endlessm/godot-export-action@v3
         with:
           godot_version: "4.7"
           export_preset: "Web"
